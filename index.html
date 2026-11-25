@@ -26,10 +26,10 @@
 :root{color-scheme:light dark;
 --bg:#fff4ec;--hero:#ff6b4a;--hero2:#ff8f6b;
 --ink:#2a1838;--mut:#7a6580;--card:#ffffff;
---line:#f1dfd3;--sun:#ffc93c;--mint:#3ccfa6;--chip:#fff0e6}
+--line:#f1dfd3;--sun:#ffc93c;--mint:#3ccfa6;--chip:#fff0e6;--dark:#b8402a}
 :root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
 *{box-sizing:border-box;min-width:0;-webkit-tap-highlight-color:transparent}
-html,body{margin:0}html{background:#fff4ec}
+html,body{margin:0}html{background:var(--bg)}
 body{background:var(--bg);color:var(--ink);font:16px/1.45 Nunito,system-ui,sans-serif;overflow-x:clip;min-height:100dvh}
 .app{max-width:520px;margin:0 auto;padding-bottom:calc(96px + env(safe-area-inset-bottom))}
 h1,h2,h3,.num,.btn,.seg button,.lvl{font-family:"Baloo 2",system-ui,sans-serif}
@@ -63,8 +63,8 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--sun);outline-of
 .steps{margin:0;padding:0;list-style:none;display:grid;gap:10px}
 .steps li{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:center;font-weight:700}
 .steps b{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--chip);font-family:"Baloo 2";font-size:18px;color:var(--hero)}
-.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:58px;border-radius:18px;font-size:20px;font-weight:800;background:var(--hero);color:#fff;box-shadow:0 5px 0 #b8402a;transition:transform .1s}
-.btn:active{transform:translateY(4px);box-shadow:0 1px 0 #b8402a}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:58px;border-radius:18px;font-size:20px;font-weight:800;background:var(--hero);color:#fff;box-shadow:0 5px 0 var(--dark);transition:transform .1s;text-decoration:none}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--dark)}
 .btn.alt{background:var(--ink);color:var(--bg);box-shadow:0 5px 0 rgba(0,0,0,.35)}
 .btn.soft{background:var(--chip);color:var(--ink);box-shadow:0 5px 0 var(--line)}
 .btn:disabled{opacity:.45}
@@ -103,7 +103,7 @@ nav.bar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(12px + en
 nav.bar button{color:var(--bg);opacity:.6;font-weight:800;font-size:13px;display:grid;justify-items:center;gap:2px;padding:8px 0;border-radius:18px;min-height:56px}
 nav.bar button svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 nav.bar button[aria-current=true]{opacity:1;background:rgba(255,255,255,.12)}
-.ov{position:fixed;inset:0;z-index:50;background:rgba(20,10,28,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;color:#fff}
+.ov{position:fixed;inset:0;z-index:50;background:rgba(20,10,28,.95);display:flex;flex-direction:column;align-items:center;justify-content:safe center;padding:20px;color:#fff;overflow-y:auto}
 .cam{position:relative;width:min(340px,90vw);aspect-ratio:1;border-radius:28px;overflow:hidden;background:#000}
 .cam video{width:100%;height:100%;object-fit:cover}
 .cam::after{content:"";position:absolute;inset:16%;border:4px solid var(--sun);border-radius:24px;box-shadow:0 0 0 999px rgba(0,0,0,.35)}
@@ -127,12 +127,30 @@ nav.bar button[aria-current=true]{opacity:1;background:rgba(255,255,255,.12)}
 .start input{width:100%;font:700 20px Nunito,sans-serif;padding:16px;border-radius:18px;border:3px solid var(--line);background:var(--card);color:var(--ink);margin:16px 0}
 .danger{color:var(--hero);font-weight:800;text-decoration:underline;padding:12px;display:block;margin:0 auto;min-height:44px}
 [hidden]{display:none!important}
+.topic{display:inline-block;margin:0 0 10px;padding:4px 12px;border-radius:99px;background:var(--chip);font-weight:800;font-size:14px;color:var(--hero)}
+.seg button.lockd{opacity:.5}.lk{font-size:14px;margin-right:4px}
+.locknote,.toast{margin:12px 20px 0;font-size:14px;font-weight:700;color:var(--mut);text-align:center}
+.toast{color:var(--hero);font-size:16px}
+.camstep{text-align:center}.camstep h2{font-size:32px;margin:0;line-height:1.05}
+.camhero{position:relative;width:170px;margin:0 auto 8px}
+.camic{position:absolute;right:-6px;bottom:8px;width:62px;height:62px;border-radius:50%;background:var(--hero);color:#fff;display:grid;place-items:center;box-shadow:0 5px 0 var(--dark)}
+.camic svg{width:34px;height:34px}
+.help{background:var(--card);border-radius:20px;padding:14px 16px;margin:0 0 16px;text-align:left;box-shadow:0 5px 0 var(--line)}
+.help .mock{width:100%;height:auto;margin-bottom:6px}
+.help ol{margin:0;padding-left:22px;font-weight:700;font-size:16px;display:grid;gap:8px}
+.help.dark{background:transparent;box-shadow:none;padding:0;color:#fff;width:min(340px,90vw)}.help.dark .help{background:rgba(255,255,255,.1);box-shadow:none}
+.tring{position:relative;width:min(240px,62vw);aspect-ratio:1;margin:4px auto 14px}
+.tring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.tbg{fill:none;stroke:var(--chip);stroke-width:14}.tfg{fill:none;stroke:var(--hero);stroke-width:14;stroke-linecap:round;transition:stroke-dashoffset .3s linear}
+.tdig{position:absolute;inset:0;display:grid;place-items:center;font:800 64px "Baloo 2",sans-serif;font-variant-numeric:tabular-nums}
+.talk.warn .tfg{stroke:#e5484d}.talk.warn .tdig{color:#e5484d;animation:pulse 1s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.06)}}
 .cred{display:flex;flex-direction:column;align-items:center;gap:6px;margin:28px auto 8px;text-decoration:none;color:var(--mut);font-size:13px;font-weight:700}
 .cred img{width:130px;height:auto;display:block}
 @media(min-width:640px){
- html{background:#ff6b4a}
- body{background:radial-gradient(circle at 15% 20%,#ff8f6b 0 180px,transparent 181px),radial-gradient(circle at 88% 75%,#ff8f6b 0 240px,transparent 241px),#ff6b4a;padding:28px 0}
- .app,.start,.qrfull{background:#fff4ec;border-radius:36px;overflow:hidden;box-shadow:0 30px 80px rgba(60,10,20,.35);min-height:calc(100dvh - 56px)}
+ html{background:var(--hero)}
+ body{background:radial-gradient(circle at 15% 20%,var(--hero2) 0 180px,transparent 181px),radial-gradient(circle at 88% 75%,var(--hero2) 0 240px,transparent 241px),var(--hero);padding:28px 0}
+ .app,.start,.qrfull{background:var(--bg);border-radius:36px;overflow:hidden;box-shadow:0 30px 80px rgba(60,10,20,.35);min-height:calc(100dvh - 56px)}
  .hero{border-radius:0 0 34px 34px}
  nav.bar{bottom:40px}
 }
@@ -12541,79 +12559,82 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
 /***/ })
 /******/ ])["default"];
 });</script>
-<script>
-{
-const SALT="laipins-2026";
-const LOGO="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbgAAABoCAYAAACDg+UoAAAsRUlEQVR42u19a3BlV3Xm9+19zpXuldRNt+1uTGDAxmBoYmPMM4BpY2Nj/Gp3GxmYUAk1k6IqQyWVkMwwmUyNoszkOUMCCaGIM5kkEwhggds2jd12/GgRG4Y3NqTB2MZAHLfd7pbd3dJ9nr2/+XHOad2W1dK50pV0Je2v6pT8kO7j7H3W2mutb32LCAgICJgGAWgEMN+rVN5ngPc44HUCSgAmIuA+AL8/Vq1+ZwQwo4APtyygV2HDLQgICMid2wjAMlB6ulz++9iY3xZwJoA+AJEBhiz5CgDXnh3H0SdarX8aAcw4oHDrAnr1tBYQEBCA7UA0DiS7BgY+2A98uCa1AFgCJvsVAXAGiAyJJEkuurHRuGcYsGOAC3cwoNdgwi0ICAgAgAvzdKP3v9CSPADDE20EAUQOaBnAw9p3AcDBcFAOCA4uICCgV5HX0941OPhyki91AHkS+0DAOskAeM2vAH3jafQWnFxAcHABAQG9h/2Zg0qc22CBstJ05MmcFj0ASdsOb9xYQajBBfQoonALAgICtmVOypEJC9TnmV5HzZEjzXD3AkIEFxAQ0LMYzSK2uFp90AE/tYB0cuKIi0iIHP8kMDWcsrFDFBcQHFxAQEBPQsOAGQMmIf1piTQEvGb0uQlwWQ0O9P7P2qO/gACEPriAgAD0Zh0OAMzWJPl6HEVn9RtzHgBq2oExc3xsev+bN9Xrnw3N3gEhggsICMAqYFISgD+lXP5LkBMN6Rcg7SdAk/6/pvP+tqb0yyVjrrl2YODcUcCPBDsSgEAyCQgIwKpQf3huH3l5TfodGfNrlIwHIqXRXNkAHyiRb657X2pnYAYEBAcXEBDQ0/BkzQPqI3+nKXkB/0IggbQhNuY0SKhL3pCh9hYQHFxAQMCqiuAMADalJoGSAV5IACKRKZzIhvp9QHBwAQEBWN0kNPkZzk+AJwAvMdyigODgAgICVg2U1tuCIHsAAosyICBgbRkFqVD60QfnFxAcXEBAwGqCA+JwFwKwDlKUHF4mJziWNouq127QMGA7HQeSqav3yndZljXcBiiTe1rJ783tPUx+2AJoOeamjQBmIdT9A4AZBujIGFKR07HJZLrs8ML3zKpqEu/UHizXmq+0zViGtTTDC9jTnOsBCUMMAxZqXFej8QpIsatS+VIEXNBKySRmlhqdIoAJec7uqanvhTsW0OZP1MsRHEcA5obpss2bN2yo1c5uLW2OVBZgi3xsd7V6oIdukgGga8rlD0TAuZ6sYVqbT5Q0Q6fPk+yn9NOpWu3je4Fm2xTkFdtsw8AgyuVtyRJ+jhiAM6ZRnpp6ZBSYaj/tLlNkTgAcHhw8Bc69E+R5Dmhk6+NOsl5Aqqu4FJ/NKjs8MhUtJsjIOHf7oUbj7nEgWdIoY3BwG50bcCkDkh1seOMBD2mDT3vc6ultO+EeEaT1QD+k83eWy+Xjf9fhM9/w/qmbG40f96JhPFlU4wYG3grvrwPpkD7j03qdUvu6ekMOeODbu6vVv1klkmYEoKsGBrYOev/CJuDn2z/5Wtaj6Ogtx449uFSfaWelcnosPb+TPS2A0cyBh6OArqtUzgfw3latdhXIs6KlZWwhIuGkjwL4tUzwdUUjx+1ANA4ku8rla8rG/PmsH4ac9YmMSKhc/ilqtc9nBt6tUCrFjAHOl8svi8iv2iWkwymdDYZapfKjXcAhej/mouiLY5OT329zdG4J18uOA4mc21W29uNN6dl5ypOs13KeJKvGXDF0+unn48CB3OlrKYaWJs59up881y+AJm2yE4FPP1sfSX+idwMzRRNY4O9IdlzMF4CYRAv4OwDvy9ev5yOTTZsGVa/f2m9MrAI2waQnBLerv//u0Xr9p73u5PJ1KElXwJi/pjTv/smHBkZJMvGewcGzPz05eaiLBxYCwPCmTRtdvf5JGHORkQrvtfb9z1HAX33KKUNxtfohAP+ZpLUAWku/IIkDIgL3A8DBHmBmbckWxwPPbUqJS5/5IrWdBGTspReu9HcZA9wIYPbXat9uVSrfsMD5SfHvsaDmYAJnWuBMWvs67/3v7SqXP90olX597MiRp/NDA5aY3t6SfFNqsLeIEgnJCOTePQcOVJf6XpCccoBz6bNrF9rozay+xpPUNXwanWqBz7xFmhVZbTm4qaY0OM9A2GnbL9WRslLV6y0XGXcASRzfqFbrdwE8VwVaRRzgY3Jz3fvXANjb5SBFDWO8BV7jJO+L3UdZwIr8eZMdNPjugYGtpVrtrpj87QQwrdSw+8xwLfnle8ggbUtTeyUDvCtLN0UocAmIBViSbx8BzIU9cFrLNlpeS1my9cs3egtwTckRKJWM+cVKqzW+q6/vreNAMrxEzjU/kMCYH3gpIdCHgmu2zNfyQBrKnBOYp9RTh1V4LQv70mKvSU6nbD0BGcBKqqwm51YiJaBVdL2ZXrVSFE0Bx2fuocdHJtnzjhw5CuArJdK2HV7nupDJtl3RzYN9TnSJarULSmSsdB/P+1ksYL10sEneYV6dPgi+4f0fxeRrG2lemdkCmWU8GalXWFKjgEepdAbJ17j0s9miJ1+Xss8u2F+pbMnSEb1wauMyvYlheuK3ANRMaxLnGGvvuqZc/uU8qlwiBi4OnXrqfS3pmMnqpz3WPA1Ik8uxDAK+6aVnYjIukVGcGioCSAQ4LdPBS2l9ymWOkBFgSmQUkX0OeIzkgwC4ZRUY/u1A9KmJiWMGuCVO07Junu+eyryQjVoUNbC6ht96AX/tpElTIN0ogC5VtXnDcJrmdF1OSbwcZFnFbJmP0vW5Y8/k5CHzTaC1Y3Dw2pIxv1iXWgRKCEBi7bkGGOwwBUMPuJIx5QS4tNdp68vgVKMEcB5QnzEf31ku//4o4LenJ9yuO92NP/lJzB6s5eSEE5DVpTZMALC7VntfApxjyQsa0scS7+8iUC+RUQxYm8ltZQ6vmyQgtb9uBJiYzFOck076Vku63khX1qPonN3V6u+3ZRlWA+TJyQ7XvumOHGmuloc2P4Turlb3JtI32vbKXA+6dalDf6UbGjoz20/dO8h6f04nz1q2mT8PgNFwf/+/8c79uSPFIN11PLwW+Wabkl98J4tFQJBAYAeA/7tlnU87zqO5lpT0GfNb15TLj99Uq31sKepQfUCSkI22E3Rv1Tyk6jIFi9xdqz0G4DEA9wLAcF/fGc6YKxz5LgAvisnnEzBeyr1LkqXWOq0VKY/WDGANwIg0ToKkHzjpYUj/s2Ttg5+pVp/CicZyNbAn8eySUwdpE8mVe5tA8yzsA8wIgO8CNxnyQkpF1sjFZNxMkksBPLQdMOOLzBRkpSKbAOcW+whp7a3l/eFyrXY3AJkW+ZrImNPdKiiCLoc9Hs9OMATe5CSo85OITdKNfdFVAwNbs9Ppur+vAGxTSmLyo7sqlcuXoiZXSZ2a6+GbsFypKo1kTdh5tDzWaDw6Vqt97MZq9YKhOD7Hev/6xPvfc9K3CbgSU0a1OXGvag6CGvLfZzrp2wKoe+DRuvQX8P6Cp2q1c26s1a66sV7/0mempp5EFr1n674anRsgNTr80O7gKusHvTBl03sbx19sSq22g8+8kRPJS/PXQBcYwW5w8CWGfEWSPtvz2QtnSYG851PA0WHARgSuclp5WXD1wCbI2T/3VyrnR8D5WdjdqYOjB1xszHPg3IUAPrsKaNBYptqQEWkg/dWOjRtfMZYWs7tm6PoAd1Rq5NT1nqvBkU2gjRSDpU9XthuMfRnxafTIkWcAfA3A10aA//b9SuU8ARdQ+i8AHMjNSElW1HQ/Q044Q0YKA4AWpEMeONICPhk79xnfaDx+I1CbRTTCA8Bqfw4WkAJ346tMMCPnDowdPfrIrkrlmxH5hpbk53IweTYA0hsu3bBh8+jRoxOLebb3pXbXy7lLS8aUGilxzRYoBVDAF/JsnAG5PfsgXC2hP5Y4PWmlq6PUSrqFEmYISMbs7MZpZi3NGXNSUiKfFzWbvw7Ad1NG7MHej+CSlTRa40CSG68RwGTRHW6oVr9VTZIvGvJUpaWKnwJ4RsBDypxVlK5TImBS0n4AzxjpEZGuZMxZ8P7hzzYaj4wBjfYobRTwY9PSdas/XZ82eHdKntMKiz5gIT1x2ee9zRQjAdIB3pJbBp07v50FudAoMvvHywveNBnAtqQjfdKd+WsYAN8z0xGUTnL5vGN/KS7frgawwqF5Vn+7wqfpyYU6fZtIhHTJjo0bn9NDbMqOerc7uDqqybVSeYxfzVO46tK92ZKSHDp1cNIS7m21PTue7JXoRbnDy+otxpKnZbXm5wF4CYFNkjZAOgqg5aT/I+CnBnga5HMFDIh8GYDnE4hIbhoBzKuzbMVYb+mxdhPJCcSh+R+kVXkPthwn/uq2VloAswWebW9JSLpske0CHAX8cKXyXAJvTFJOg5kvA2hJQPrKZ2q1x/MUp4H0toxFYQ3A2S4LGAuYKPvZyRXNc1mgFPVAH1x+Q64dGHiFAX62YM53rjSlj8nNcbN5yXKKVncp0mAnFzpzLPSALxnznNj7d2cHC9ut/kV2eFAyGX19KS8LxBFgJEW9aMhGU5m5BOlJ1ildTxhyK8mtAGKR7yFwJoAXANjMtOcz7wsDSDcK+MG1T6paF/q8WUqZUa12v5d+aNPUn5/HyRgngdLbRlKSyYL4B1n0SO/9W2JjhnzB18l+YW9bihMR0jTEi5UWT32Wg3fZycMx3fBoi+RKbHuzmV96poHJ2GyarSSR5Ut9S4LInyxXfWKunK/3/t19xvRlPVzRIpyEJ2kccG26X1YPPFCjVJ+FYMNZUjbGAoMGsCcT5531PSSB3Angz8anI9xFr30HJ2YRoJcOCjjUdQZxKtt0XI/SSYbk46uEEERMy3UB6UG3rOn/xpm/i/UzDFYLKb+uxq+aSew1d5G3G/JszsMoZ5qmFMhzvjcw8LOYmnogCxy0gOhR3pgLi/ZIZ+nJpnVub56NGwcQ0ZjfgHPnwZhD9L7qyboB6nIuIZkQSER6kzm8pjH/0l8q1Zves2SMGsac4NA2HD58wr8/A6g84wNWsn+vZg/HMcDvzRhmK9QTc5w9+QCwI2dPcnEPgknS08xbL92wYfPYIouuy/Twupi0iTRigX9oeh+31xxKsxkz760DXuSM+VBszNuzYrSZtxaXvtb5Vw4OnrIn1a9bdHP2KKBdxV/DxWTU9P6PdtfrHxlO1U+6uveOZfdra/bzBqC+yvq+OIuVXteMYHov2PXV2ipyj5d+tYBNJICkREYN7y8G8EAeOHRyi28A/KXAAIF3+AK2WIC3gEmAB8aazR+ibWBAJO8/TmPOAJB4Y/KahGht3t/CTBHdxUCkJPnA2NTU366lBczZk98rl19tyFcskD35bFZRyqbcMtRsvg3ADauFTUng8Fit9q8d/MmjAPbtrFQ+HQPvaqWRv52HUSkCQ2XpXAB3D6dMu5V4eH32ADbDeKiAADxLIWhgaurLU+Xyk5bcOp8WpNKsCAi8A8Cf5pFUJ7aYgNtZLp9jgRclBbJCTCc3GOP9rbnqTG5nIwIb23TT5gzNDUmfFqP5aiD6ZneNtXqgufvtJdIsNj05C5vynQBu6HSxVwpeikcAcwCwpxcw+gcAez3Qioz5lcT7SwywSfM/CD4CrPf+lK4KU5NaSEruR52fNFfVHg/o0gIas54iWA0D9pPA1C7yHku+20tuLtuYZWcA4A1XlMs/M1qr/WsnUxTa7MA7igptCLBOggduA04sc0V5b47mZ/olStlSLQAaXCu0X6T52i1AqSUNu+motRvI2ZRvu2Zo6JTRY8cOr4YGV5IaTSn8vL7YxhQAjk1OPrWzUvnnbFjmvH0rJOHJXhDZXlP7OSCg64d/72+Gte8uYBvzPuAhOXcBgM90Ml1+HPAjgHmAvCxnss+XnozS9OSjrVrtgfbIEzM8Izu4sIbSk3YU8L5SeUVEnusWx548GZtyE1utS1aLNuUC+v41HT+p1snxgKuIXRoQsN6Qt0554L6WNGWm++PmzVyBvAKdjyP03x0aerFJx3vNa4uz9KQg3bkHqA7P+HymczkKcS2eULy0o8PmbhVlU4IUjbkWgNZ407fUoQP3Kxw1rbX9HBCALgsEjADm5nr9XyR93abs4PlsmHUSQb7lMqCvqFzh9mx0G5Lk8jiVjnNFyHyZTNjek3nMTovyWovakwB2us6au9lJmlLSxcODg6etwqZvLOAUttrGJHGyswzGms9sBATgxBYqkLyjoKoJfCp8/IK+/v7XAcVUTbLDvwS8wxdrppdJZ5dOIIrGgRPTk0A2CoHr9MSb3XTtr1ReZcif7TA9mXQ4QmdTkipto9fTlAtUFlGWpIygVXcG0jfThmUt8goIwFpNUwq4vZWSPmyBw7+zJG2WppyPRKaU2q9MveTVLmVizvc3+ey3+246duzwyCytRlFYPiCRru0zpih7UllD4+8Y6VcNuWU+6uxxPTpyB4BP9fIIHbYpyh/sLJrNv5NdXdKC1HYg2jwwsDmyNmlJjCWT7QsmAAcANE6yZhEpK5lnpqZqe4Gj4WkKwBpMUwLARLX6wOZy+ftRqu4/J30/bxcQcOl24L/uS0lnJ8V16Wu5BDivZMypzQLiym2FkS+2i3XMTCet25PnDYC/DOgDuaNgelIGoKRDT1erHwbwnaI56STNSV+6c2BgS6+P0FmMNiQBu1o2VOaV66f09/9xLD2UtFoPMUl+5Lx/xHn/CKRHIunhRjrT7JHZLuf9wy3p4XK5/NUrNm7cFJqhA9YijveWkXdaEiw6BJU8Z6hUOovZCKd5H0lpF2ZXv5pVXLkpNUvO3XMyUft1y2AbBiwBDaQNhds6nDe0bxyoC9jTUZqS3Gikd6wCNuWCRVIhxavJyBOQyOdF5AaSmw25gcAQgSGTSpDNeRHYQGAQ5ItMvf4cABgJDi5gjSHPOhng1qJzMpUyyKPY2kvaa3mzPYZjgHt/mj27xEnU/L1vyoYKfutlzebD7eolJzg4rtNRLgen9fZ2ROmJpDhjR7oBABPv9zSlWhHqLKaLrzvXKptyOL0/0Soc49PK0sxJJiDcyeWzpvb1Pu8vAGtf1SSpVr/mpCdt+qwXZZJfDqQ9bnNwIfBUuXyeJZ/vi6uXQNLto+kg3VkDBqP1maLkOOC2p+ot1xY8kaSMHe+fiuL4LgD4QqPxKKV7i6QpmWlTQnrrzkrl9Oy0YdbgocGuMmHpnBJDLYJBSUlxKvsVELAWoRHA3Aw8I3KfJYECNi+zrT+3c2BgC07CIG+r9V8dpe0BviA7HbL2zrlE+s06TU8aANpSqbyS5NlFtCdzxg6BO8aOHp0Yzsb7CPg8O2NTbpD3l2ZpStOr43JW4m+xMj0N3fq8ie2deW8BAViidgEasnBpxgE+NmajzQZrzxZpXZg7tDb1EswvrkwHPPz05OQ3ZmsPWPc1uKy5+9qYNCjW3E0BkLU3A8Cm7MTgvb+9JVVZsMM/bSXkO7EG05Rnr8J+sG40mmdklaRuTAKkUw2COQzA2mwXUJIk9xYtzTBrQ3POXQ5AMyOtXKfymr6+F3N6DqcppF4C3D0O1Ifn+BzrkkWZsyc9WbS5WzZNTx4qT07eCQDXp/Ua3txo/NhL90WdsSnfcnW5/LxcJWCt3Nen00PAejs05f1/rX5rW8EMBmBttwvw5kbjxyioaiLAeAkg33IlUBmbkaY8Tjwx5pKY7C+giZy/JiXdWkR1QuuUPXmeBV6W9XMUYk+SvP0fgKfzE8OF2d8ZYDeLdfjnbMoNJfJtALgvaDGiB1KyfrHjAQgkpSgKKcoArPF2AZv1j/5jEVWTbLqALHBmqb//VdmEAvMsdiZ5UUFlI5m0tne4bO19ecDSFVklrC325K6oQD/HcfakRC/d2H66yFlBzvvbmlI9mwqtIoqNXrpuHWhTrtUpzbPBNycmwloGYJ2omtxaUNUEAFxEQs9WNeEY4IZPO21Q0oVJSveyhdRLyPs+PTl5aCTtBFBwcG3syWGg1NbcbYqkJxPpYBzH+wCoraDpAZibG40fS/qynR47NDebMtsrO/r7X7DW0pSrOM0oLkKmS4DfFA4rAVgfacrTqtXveukHNi1LzJemZJamvCQLDBwA5pGcq1bfEJGnqgOdXkq3AXP21q0/B5ezJ5GmJ19alD1p04LmP2bsyRMKmjkT0gCfY7ExMfm8pAFjzNuLLFLAkk70zvdAXj/stEXA5MzRpwO5JGCd2NHrgRaLq5qYJP35ymsGB1+etRzweCQnXW5T4+mLqpfIubtOpl6y7lmUDhjuYDQOs/lou9smPx83cFkOmdb7va00TVmo6VuAIL2zyCIFLHH9jay11eKeFZmd7Mp+J1+75qbQ7B2wvlBU1YQAkpiMjXMX54f6fWk2zXrpkiKv065ecuMc6iVYr2LLNwD+OqCUkFe6gtNibTqO4cmoVruzTXUebR3+DgDGGo1Hd5bL98XGXNSS5iSuZA2QBPmm4QWMdQ/oIv1Rqvgo+u1GkvxtPt1+xglQc7QYpM3hko2cO3L99N4IkVwA1rqqiatWv6py+SlLnjaf4HymAAUAVwD4WE4ouXpw8OzY+5e54u0BRt7fDkDH9TGDgzvOnnTXlsuvssDZRdiTTNOTxgF3AZgcBsrHAL8VYBVgLVvQctr0XfPA5whc3AGbcrAhXQXgE7MpYQcsy/Ty6KZjxw4DOBzuRkBAscdmGLBjwDM7yXsseZ2X3Fz+JGNTQsDrhgcHTxubnHwKAKxzl8bGRI0C0wOUtlnJSHcAJ1cvWZcOLs/3CnhnTDJbEFNEDgbSpa5c/q6AqEKao+nf2VKmTekkI3LSAB9sef80yU2a50STGVeYVJvyExcCfjw8OFiJcTlZwTvetsAU436A2wCFCDxgvdlTAncAuG6+bFh2qPexMZubzl0A4Ma8PUDFsi0+Ssl+D03U69+aS71kPTq44+zJFnCcPcmC6iWGPNUAp54s9yQS/STq0jYAt8fkuxpF0pSphX3zrv7+F47W6z8JacqVO5EeBPxYuPcBASjaLjAOoOXc3bC2RqCM+ediegKG5NsB7L68UtnqpTdns8MKpSfZpl4yVoBDYdYTe9IPDr4+NuYsV0CtemZxMwF8AnjXdvnsEpAkkpd0Mcm7C85TS9mUZCXvD9kX2JTLf/JZQxPqAwKwjO0CAviFRuNRAd+JCrRIIRNfBnApAJWAV8XGbHLF2gNSRRRpLzrTml0/4TScu9Km/+w7zmSlEd8JF6avKAFI8gJJT7S8P2SLsykBILApAwICVlsUZ7Po6laTtgtoXicFKCJftGNg4BwjbTfFlISUtRo807T2XqBYenK9OLg8PVkWOZwUHNa3ALgSWRZwhoDbojQj7VBgnATJnxvu6zsjNH0HBASseVWT9BcvQfE5mi4iAenePZl6SVGmslk36cn+/lcZ4IxO05MonsZkdscvozF7lf23gmzK/sSYy4HVnaY8FiZZBwRgHaUpBQAT1eoDHni4sKoJAHh/ich9KiDQnttRkl/o1EaadZKepCcLa08usGHYJmk0tp3Ak03vnyiapvQSRO5a5WlKPpU2TfepOEUf8r658r3eAQGFN8tcsm4+v3LRAK7tssPxXjQCxVVNUtmuN8n7iab0uJ07IpMBbEtqtJy7u1MbuRAWJUcAsx8w2U/OMpl1QeHuEjAIOQ649wPRQeDqDtiTWOBsMddHVlrSmQT2ROS/L8qmJJCmKRuNR3uFTbllljWebZ23AGYMaL4ojl8K4Lk+fbBZaL4eWS/a07JEa2ba9zOQ0v5PdljakjIu2UN7PGB590ts0pp8xGefktgu0G4BOKAys+zQLZvZC3us7bm9xUv/oYB9ZWYnh5rWniHv74iM+cWT2clMbMMmwHfObzR+9IUC6iWLcnAkW9kbdPXkPb5E6ckxwB0eGnpt7NyLlyo9+SzVXuAKAZ+S9EsoZuiTElluGXM1gI/2StP3WAdrvGPjxueg1fqEBfpbwHxNm8rHaFB6EgC2rZCDW6r9vFx7fD2j03p1Nwy/AZ5w0lMCGtmz7pDu95n71zkgFnn/cjqc8RVSNfHWfqOVJLmqiZ8rO5hHv/L+YpD3AHjfXL9rSSTe7x0FfBH1kgU5uLYa0ynX9PW9WNYOldL0Wp+kPhhTllQxxvRDKik94RTPlSbJl8aazQenBySje6NxnHtvTBonJR2kZbWA9AUTSZAuioDfbwKPW+B5hWRs0p+7AHx0pZu+BfhhoJRUKi+PALakkpH6YUwZUhlSH62NM41OCHgeWq0PGOAFrdR52SK5cS89EdVq31+JKdht+/nUXX19Z8raIQAwUuykWNb2GSCmFEuKmDX1nywKp2Q9YAxAb62BZJGq5xgPmBhAy5h7Xzk5+eDodEorAItWtl/A8PUFOQ4HANaYWxLnyo6sWe8nDVkX2RLZMmnbkHLD7KXYSEeuGRp6qfU+9lJk0v3UB2vL8L5MqQxrS5BK+f5Z6GT6PoAO+Pq2avWBZdxjGgHM6LFjh3dVKvfadIj0fL03+eDniyF9oglMGWDgJOIYtpVqfO1dSKYnKjyeIH0jiPwtY+2HNE2NN0xzr8iookD+s6AXKQGYtPaPAXwoj7q6yJ4cTIDLk87Sk1pgbSYNv40ZakpnI01Tvr9ImjLLS79heMOGs0aPHn14pdKUTHvDnnGVygf7yP/elLwhS/kakwTb1vm4kqqEpHiE7CxpHfC1MWByJb5rvp9B/idY+5sErACKNJYkpOOK2u3fc65GEtv+OzOeAQMgce6nj2zdug1PPlnt5kFuveLqSuVVFqAhEwDOkR6ke5aWqGTl3OTuWu0xLGLQ5ziQJM69JzbmI5CcjCHSfjBAKY2w3YZ4gCBJ55RPqhBpSYJpvR7tz1WX+jpxf7n8etRqXyvaDL1YZBknEbgNqTLTvB/TAT4mX+jIDfL+y5ExlzRn2MlcvcRJD0e12rc6aQ9od3BJh4Yh5uxpObl0M4mdPbgJyciQ+7uZk84dZbO//9wS8MIOjK+YOSpOn/LB4gcBZX9zpYC/F/D+ImlKpGnKUtO5KwF8ZCXTlAI8pecYMlJ6H46vsfJ/lGZ+Z1M0Ylc+jcH7G9seEL9CpIGYM040Oj6WtvAwVM0caDvjGUhiMgJw9yeffHJquQwP1uZE6WgcSK4pl/+wn/xQK23+hdJ0t5+lNUcAUCJr11QqH7mpWh1dzP2nVMnsQr7frSnAXpq5v2Y+S1zkYUcpGQOQjpg07c8bUpuHZVI1kYnjO1utVsMAfSqgapLN2XyzjLnNAJfMvAeZegkdcNcY0FzIukUAfmDIs908UcY8E5CZnXMXej8jAX1LcfOtMT9vyHzzzzuOIQLoyN8wwJ1Gin2eY57lu0UAW7OMWW94Hxlrj8aTkwea5fIhS57agdr2O0eAP8MKpykJJJpmgZn51riDiD2d0OD9gWZf3xdQrx9P//TYRG92crApcD8jkY2lIBasJ+QpKkM+5CVlNbAo25t2Zi9WpurgDPkcej/UhfvvT/RTC/ZMZHf3gbOAbZE/3F2r/SSbdO2Xcwjq2JEjP95ZqXwzIt8430QVTauaXE7nPtg05ll9dAKMJHaqXnKijZaOZYKzK0qtZnfTNRwD3GXpSWKHk1ggPSmTCic/2axWP7EHqHbjg+wib7fkvy2qtk3gtfeXSmfd1Gz+cCXZlHr2YM+uzV+LyKjl/Z988ciRp3skmuEyyYKFJv7uDar9qk58rjVXaJ1I8uQnF8vYzdKSPdtiwi4/r52mcAXcaoA3zmfPCTBJD9DnG7KVSP8ckee0ZdqUjSqbgDFfBtJxZ+zYwQFf8dJ711I/UJae9P2Dg2+IpNOz6HTeyd0xaVvSrXuA6vuB+PRFGN4DgL0eaEm6SeTPF6HPKk1llVpxfBWazQ+vcJpSS/CaLgKipvf7bb3+F8jWKZjrgE5hvB+YoV/P+UrLRorXwa1pLoJDsOjImsBtLem/F1A1ycsyUQ04j9IeS57jskyb0lFl1gH/tHtq6uBCI9IoIm900v+w5Ea/AjcGS9fcLXp/VTbPrQh7Mk8R7gbABwFdvwjjq/TvoSi6p5UkTxnyNBVlU0q7APzJSqXu2uqIXXWYWa2r5aVfuhGoZRGqgHUzmydM/EbX+tG86SCqEYB4BgFlDe4vyPsGVm4IKqNq9ftJpfJwBLxkPt5DrmpC4B0i/9pnackZtcsvAguv05uxavUJD1wfk0YrmCry3TN0HAfclUCFwHVJsVHo3gKmKR1IarV9ALRY58JsKOBNx44dJnlXRM6rtp2xKUXgtdcMDr4sp+CuhIPrZv4++94+Jq2TfuWmev0rw4Bdb03PXOC8uYAuZIcBuOyAsW0NH6o4PVUeKzAE1YwBNQF3dKJqQmC7Bf61lamaKD282KbUNEmyD1i4wpMZAYxKpT9sev/DKGV6rchDaLpk7HLtyahS2R4BLyjS3J1N7oYBbrsFODZcXAS0kEwYyd0qlrMn0hE6sfH+ypXSpvSk1L1IPjGAiUnbdO4/7q7V/nI7EK1TFmFwcCtLJHIhS4ClH4Iq3eGKidrnI8M2OekMAvfYNO2cZC0337qx2XwIHaqXnOBX9gO8+ciRZzzwXklVmzIak5Wgpnd1maVrDVkoElHajAuSn0N3VQUcAJmpqTtb3k/YAirYOZtSwLXDgF0pbcpFHjgkwCndvBGAakv6d7vr9f/VqRLBmjKyqdBAwLKbFkBA0jImWeMZAuS2e/8KlJryrFcUx/cm0uEi9i7LFsmQF5HcmzFkZNLpAf8IpASWBduxsbQZ2u6u1b7uvX+HpAN9af+TkLJiXOZ8tFRX1hPiu8WeHAZikm9P0oZ6M897O5uqdTxmBgb+Cei8mXCesN2OARMg77Skz07xJ/082dwjb4BX+4GBl3VphM5cArEq+v/nuIc+W78kS3MzJm2cKhbcDeDNu6vVvxnOmFbLYNB67tLaF95dKed1XOhYJ7ky8eOWmk23xGLLK3a1fa7WSq7HCGDGjh6dIHmvTdn5bp7nwiQSJL3dSd9vSlUApZbkrXQbsDjWq8kMuhsG7I31+pca3r/JSZ8zJGIyigFrMwkZLsGFVNKL3dCIHM5fY2DgzZY8PRP9NfN8BhOTNNLesaeemuxWenJm2C7ps9l3jAvcE8ZkJOmdXUlTplJTRCodNe9aQIo8UJqxPrNeBqAFTJTex6hEWgJ15/2tknZ8vlq9+PPV6reXqx1AUinvieIS7dmF7nEtTNw8YHbDldska9J9aOzsl83qOv393Xhj722RZ2ml9hhWeI/ltsqnvWucpd1opv0wPrV3ZxlyE6Sv95P00qOo17+z2IAjamPBuGHAjjUajwIYvq5SOd9J14i8yANbIW0k2V+gb6rj9IGTKGmiW6ryiXR5H2mTlDJrND3GIlcqmVYRAJB436T3n1qiBXcEEMfxvmar9TDJ5+dRzmxU/MwQeidFkt7YFvovRtrpaZ+e7Fp+WlYnP0GdUItMJEPpkMiDTqoKaM1hmEVpSuQUgcMJ8APj/Vdbzt15S6ormk+f4OjSO7f8/hwgsA1As/27tt3rQko76mI/EQHn057TJ1ZycsJaQE4QSYypwvsJpaLGjmSibExN+7OdpcAiSoejOH4GjcaiaPDemMMeaGp62Cdm2WNzEiza6ttd7S9VKjf3BFZ4COp42sZxRwuYJDmQkxdzm+Nnq9OnpYxXAvisBd5kyD1jQG2xB2OeTKG7vah3GdBnN26s2GazbOdoCo86bGS1gBqAaQJ6Ta12oFusuvcMDp5aS5KXWGPqxpiGI1u22UyagEqkT0gf5Q8KwJa19T2Tk4eWevGHN23aaKrVTXXSmew+RjOMXQLQS/RSNBjHxz7dhc81vGHD5pb3W9FqNfsA1yIl0kWzGNoGoFtqtQPvB6KnyuWt0RzG2AJytdrUQaAxDtRn7qP9Wcp4OUsQV2zcuKni3OmtVquRf1cH+FKaHkYjVSdXMXmd7jRmJ9lzdlqt9uT1K5tCmi3rYccAt7Ncfm1Efi3pfOJGUiKjlvT+z1erf7WMNVZetnnzUGliQhsA/wygMqBKtl9/nP1SGdBQ+n3cWBcmRmwHok1DQ2fGANFsNmezKZn+4Jy2zEns63KdzEjG1+uHxoBaL+ytXaXSS2jtRhjTTFKVKN8iZQDFpHcSfRrFiZKtR9Hjk0eOHNsyOPjS2tDQj/ccOLBozVbONYpiH2DGA/Or2xEG1vD0dHsQYJh7trrWbJU6uICAhY/LGZ1O63V6ymCHRUkuwWgHDgNmrn6X0aV9/5NOKBhpuz+jsx8sZo6E78bnOuF953p/tL1nWyM2i4gM59HaCs89m++7rogs3UiX5pEFLGpttFRz6EYX9l7s8nw89NIopgXM69Px8Ttd+h5B9DUgIERwIYILwBolIwUEBAQEBAQHFxAQEBAQEBxcQEBAQEBAcHABAQEBAQHBwQUEBAQEBAQHFxAQEBAQHFxAQADWp2pxaBkKCA4uICBgDTo4shnuQkBwcAEBAWvREPwMFqf5FwSkA4KDCwgI6B3k45wg7YhILnBmnST1hbsZEBxcQEBAz+DC3KGRf9GSplBgCvNMfdVEoie/AgDjQW8zIDi4gICAXkA+MX53tXq/A/45np6fWMS7+RiwTvrD3dXqt7JhwcHBBWC1qnEHBASszYOudpbLrzfkl5Q6KjOfc8t+4YlGtfqSVwP1XlKyDwgIEVxAQAAA+GHA7K7V/l8i7S6RRvMPqvUl0nhg3x6gun8dzDsMCBFcQEDAKrUFIwAfHBg4rSV9jcALHKCTjM4R0whuAtZeMHbs2EO50wu3MSBEcAEBAb0G7QPMZ6amnvTA/45IzMGodDFpE+kPxo4de3B7akeCcwsIEVxAQEBv1+KuHRg4h9L9PnVabLcTArwF6IHHy/3925oTE1Nj6e+F9GRAiOACAgLQ07W4z09NPeCkP4hmYVQS8BFJkH/yqYmJowdD7S0gRHABAQGrqRa3H+hLyuUfWXJrWy3OG8A46QlXqbz0VYcPTwXmZECI4AICAlYLtB/gGFADeUs0HaFJQGKARMDv3XL48LF9nTWFBwSECC4gIKAn7AKHn//8vmRi4iEL/IwHfJk0Ve/3767VXjEM2LH5WwkCAkIEFxAQ0FtR3HbAjD32WA3Sh2MSkJ5MpE9S+l0A3BYit4BVgP8PYCGXAzntuogAAAAASUVORK5CYII=";
-const CRED=`<a class="cred" href="https://cadet.lv" target="_blank" rel="noopener"><img src="${LOGO}" alt="CADET.LV"><span>© CADET.LV | Jānis Eglis</span></a>`;
-const LV=[
- {min:0,name:"Sapīcis Laipiņš",col:["#b9c0cf","#8a93a8"]},
- {min:3,name:"Mazliet pasmaida",col:["#a6d8f0","#6fb2d6"]},
- {min:8,name:"Labā omā",col:["#8ff0cf","#3ccfa6"]},
- {min:15,name:"Priecīgs",col:["#ffe07a","#ffb83c"]},
- {min:24,name:"Laimīgs",col:["#ffb38a","#ff7f50"]},
- {min:35,name:"Laipnības leģenda",col:["#ffb3d1","#ff5fa2"]}
-];
-const CRIT=[
- "Uzklausīja mani līdz galam un nepārtrauca",
- "Uzdeva jautājumus, lai saprastu problēmu",
- "Piedāvāja vismaz 2 dažādus risinājumus",
- "Paskaidroja, kāpēc risinājums strādās",
- "Runāja laipni un ar cieņu"
-];
-const TIPS=["uzklausīt līdz galam un nepārtraukt","uzdot vairāk jautājumu","piedāvāt vismaz 2 risinājumus","paskaidrot, kāpēc risinājums strādās","runāt laipni un ar cieņu"];
-const PROBS=[
- ["Pārgājienā tavam draugam beidzies ūdens, bet līdz nometnei vēl 2 stundas. Tev ir tikai viena pudele.","Tev pašam arī slāpst, un tu baidies, ka pietrūks."],
- ["Tavs komandas biedrs vienmēr kavē, un visa komanda dabū sodu.","Viņš kavē, jo pirms nodarbībām pieskata mazāko brāli."],
- ["Sacensībās jūsu komanda zaudēja, un visi vaino tevi.","Tu tiešām pieļāvi kļūdu, bet neviens tev nepalīdzēja."],
- ["Nometnē tava telts naktī sāka tecēt, un guļammaiss ir slapjš.","Tu kautrējies prasīt palīdzību vecākajiem."],
- ["Draugs grib nokopēt tavu mājasdarbu, un tev ir neērti atteikt.","Ja atteiksi, baidies, ka viņš ar tevi vairs nedraudzēsies."],
- ["Tev jāvada komanda, bet neviens neklausa, ko tu saki.","Tu runā ļoti klusi un nevienam neskaties acīs."],
- ["Grupas čatā par tevi izplatīta smieklīga bilde.","Bildi ievietoja tavs labākais draugs."],
- ["Tu esi jauns komandā un nevienu nepazīsti.","Tev patīk orientēšanās, bet neviens par to nezina."],
- ["Mežā jūsu komanda nezina, kurā virzienā iet, un sāk satumst.","Tev kabatā ir kompass, bet tu neproti to lietot."],
- ["Divi tavi draugi sastrīdējās, un katrs grib, lai tu nostājies viņa pusē.","Strīds sākās tāpēc, ka viens nepareizi saprata otra ziņu."],
- ["Tev ir jāiznes smaga kaste pa šauru taku, un rokas vairs nespēj.","Blakus stāv divas nūjas un virve, bet tu nezini, kā tās izmantot."],
- ["Tu nokavēji autobusu uz sacensībām, un telefonā ir 3% akumulatora.","Tu zini tikai trenera vārdu, ne numuru."],
- ["Komanda tevi neņem līdzi spēlē, jo tu esot “par lēnu”.","Tu ļoti labi proti plānot un zīmēt kartes."],
- ["Tu salauzi drauga lukturīti, un viņš vēl nezina.","Rīt viņam tas vajadzīgs nakts pārgājienam."],
- ["Tu baidies uzstāties klases priekšā, bet rīt jāprezentē komandas darbs.","Pagājušajā reizē visi smējās, kad tu sajauci vārdus."],
- ["Ugunskura vietā sāk degt sausā zāle, un apkārt ir tikai bērni.","Tuvumā ir lāpsta un 2 ūdens pudeles."],
- ["Tavs komandas biedrs nepilda savu daļu darba, un termiņš ir rīt.","Viņš neko nesaka, jo nesaprot uzdevumu."],
- ["Sacensībās redzi, ka cita komanda krāpjas.","Šīs komandas kapteinis ir tavs kaimiņš."],
- ["Tev jāizvēlas: brīvdienās draugu dzimšanas diena vai Jaunsardzes nometne.","Abi pasākumi ir vienā datumā, un tu jau esi apsolījis abiem."],
- ["Tu esi pazaudējis komandas karti 20 minūtes pirms finiša.","Tu atceries, ka pēdējais punkts bija pie lielā ozola."],
- ["Mazāks jaunsargs raud, jo ilgojas pēc mājām.","Viņš vēl nav ne ar vienu sadraudzējies."],
- ["Komandā ir 2 līderi, un abi dod pretējas pavēles.","Abiem ir daļēji taisnība."],
- ["Tev ļoti negribas iet uz treniņu, jo tur vienmēr ir garlaicīgi.","Tev patiktu, ja būtu vairāk spēļu un kustību."],
- ["Tu esi apsolījis palīdzēt diviem cilvēkiem vienlaicīgi.","Abiem palīdzība vajadzīga tieši šodien pēc stundām."]
-];
-const BADGES=[
- {id:"first",t:"Pirmā zvaigzne",d:"Saņem pirmās zvaigznes",ic:"★",ok:s=>s.recv.length>=1},
- {id:"perfect",t:"Ideāls padoms",d:"Saņem visas 5 zvaigznes",ic:"✦",ok:s=>s.recv.some(r=>pc(r.m)===5)},
- {id:"perfect3",t:"Trīskāršs ideāls",d:"3 reizes 5 zvaigznes",ic:"❂",ok:s=>s.recv.filter(r=>pc(r.m)===5).length>=3},
- {id:"social",t:"Sabiedriskais",d:"Palīdzi 5 dažādiem cilvēkiem",ic:"☺",ok:s=>s.recv.length>=5},
- {id:"net",t:"Tīkla veidotājs",d:"Palīdzi 10 cilvēkiem",ic:"✺",ok:s=>s.recv.length>=10},
- {id:"judge",t:"Godīgais tiesnesis",d:"Novērtē 3 risinātājus",ic:"⚖",ok:s=>s.gave>=3},
- {id:"both",t:"Abās pusēs",d:"3 reizes palīdzi un 3 reizes vērtē",ic:"⇄",ok:s=>s.gave>=3&&s.recv.length>=3},
- {id:"legend",t:"Leģenda",d:"Sasniedz pēdējo līmeni",ic:"♛",ok:s=>s.stars>=LV[5].min}
-];
-const STAR='<svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>';
-const AL="ABCDEFGHJKMNPQRSTUVWXYZ23456789";
-const rnd=n=>Array.from({length:n},()=>AL[Math.floor(Math.random()*AL.length)]).join("");
-const hash=s=>{let h=2166136261;for(const c of s){h^=c.charCodeAt(0);h=Math.imul(h,16777619)>>>0}return h.toString(36).toUpperCase().padStart(3,"0").slice(-3)};
-const pc=m=>[0,1,2,3,4].reduce((a,i)=>a+((m>>i)&1),0);
-const esc=v=>String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const $=s=>document.querySelector(s);
-const lvOf=st=>{let i=0;LV.forEach((l,k)=>{if(st>=l.min)i=k});return i};
+<script>var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",n="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-$",e={};function t(r,o){if(!e[r]){e[r]={};for(var n=0;n<r.length;n++)e[r][r.charAt(n)]=n}return e[r][o]}var i={compressToBase64:function(r){if(null==r)return"";var n=i._compress(r,6,function(r){return o.charAt(r)});switch(n.length%4){default:case 0:return n;case 1:return n+"===";case 2:return n+"==";case 3:return n+"="}},decompressFromBase64:function(r){return null==r?"":""==r?null:i._decompress(r.length,32,function(n){return t(o,r.charAt(n))})},compressToUTF16:function(o){return null==o?"":i._compress(o,15,function(o){return r(o+32)})+" "},decompressFromUTF16:function(r){return null==r?"":""==r?null:i._decompress(r.length,16384,function(o){return r.charCodeAt(o)-32})},compressToUint8Array:function(r){for(var o=i.compress(r),n=new Uint8Array(2*o.length),e=0,t=o.length;e<t;e++){var s=o.charCodeAt(e);n[2*e]=s>>>8,n[2*e+1]=s%256}return n},decompressFromUint8Array:function(o){if(null==o)return i.decompress(o);for(var n=new Array(o.length/2),e=0,t=n.length;e<t;e++)n[e]=256*o[2*e]+o[2*e+1];var s=[];return n.forEach(function(o){s.push(r(o))}),i.decompress(s.join(""))},compressToEncodedURIComponent:function(r){return null==r?"":i._compress(r,6,function(r){return n.charAt(r)})},decompressFromEncodedURIComponent:function(r){return null==r?"":""==r?null:(r=r.replace(/ /g,"+"),i._decompress(r.length,32,function(o){return t(n,r.charAt(o))}))},compress:function(o){return i._compress(o,16,function(o){return r(o)})},_compress:function(r,o,n){if(null==r)return"";var e,t,i,s={},u={},a="",p="",c="",l=2,f=3,h=2,d=[],m=0,v=0;for(i=0;i<r.length;i+=1)if(a=r.charAt(i),Object.prototype.hasOwnProperty.call(s,a)||(s[a]=f++,u[a]=!0),p=c+a,Object.prototype.hasOwnProperty.call(s,p))c=p;else{if(Object.prototype.hasOwnProperty.call(u,c)){if(c.charCodeAt(0)<256){for(e=0;e<h;e++)m<<=1,v==o-1?(v=0,d.push(n(m)),m=0):v++;for(t=c.charCodeAt(0),e=0;e<8;e++)m=m<<1|1&t,v==o-1?(v=0,d.push(n(m)),m=0):v++,t>>=1}else{for(t=1,e=0;e<h;e++)m=m<<1|t,v==o-1?(v=0,d.push(n(m)),m=0):v++,t=0;for(t=c.charCodeAt(0),e=0;e<16;e++)m=m<<1|1&t,v==o-1?(v=0,d.push(n(m)),m=0):v++,t>>=1}0==--l&&(l=Math.pow(2,h),h++),delete u[c]}else for(t=s[c],e=0;e<h;e++)m=m<<1|1&t,v==o-1?(v=0,d.push(n(m)),m=0):v++,t>>=1;0==--l&&(l=Math.pow(2,h),h++),s[p]=f++,c=String(a)}if(""!==c){if(Object.prototype.hasOwnProperty.call(u,c)){if(c.charCodeAt(0)<256){for(e=0;e<h;e++)m<<=1,v==o-1?(v=0,d.push(n(m)),m=0):v++;for(t=c.charCodeAt(0),e=0;e<8;e++)m=m<<1|1&t,v==o-1?(v=0,d.push(n(m)),m=0):v++,t>>=1}else{for(t=1,e=0;e<h;e++)m=m<<1|t,v==o-1?(v=0,d.push(n(m)),m=0):v++,t=0;for(t=c.charCodeAt(0),e=0;e<16;e++)m=m<<1|1&t,v==o-1?(v=0,d.push(n(m)),m=0):v++,t>>=1}0==--l&&(l=Math.pow(2,h),h++),delete u[c]}else for(t=s[c],e=0;e<h;e++)m=m<<1|1&t,v==o-1?(v=0,d.push(n(m)),m=0):v++,t>>=1;0==--l&&(l=Math.pow(2,h),h++)}for(t=2,e=0;e<h;e++)m=m<<1|1&t,v==o-1?(v=0,d.push(n(m)),m=0):v++,t>>=1;for(;;){if(m<<=1,v==o-1){d.push(n(m));break}v++}return d.join("")},decompress:function(r){return null==r?"":""==r?null:i._decompress(r.length,32768,function(o){return r.charCodeAt(o)})},_decompress:function(o,n,e){var t,i,s,u,a,p,c,l=[],f=4,h=4,d=3,m="",v=[],g={val:e(0),position:n,index:1};for(t=0;t<3;t+=1)l[t]=t;for(s=0,a=Math.pow(2,2),p=1;p!=a;)u=g.val&g.position,g.position>>=1,0==g.position&&(g.position=n,g.val=e(g.index++)),s|=(u>0?1:0)*p,p<<=1;switch(s){case 0:for(s=0,a=Math.pow(2,8),p=1;p!=a;)u=g.val&g.position,g.position>>=1,0==g.position&&(g.position=n,g.val=e(g.index++)),s|=(u>0?1:0)*p,p<<=1;c=r(s);break;case 1:for(s=0,a=Math.pow(2,16),p=1;p!=a;)u=g.val&g.position,g.position>>=1,0==g.position&&(g.position=n,g.val=e(g.index++)),s|=(u>0?1:0)*p,p<<=1;c=r(s);break;case 2:return""}for(l[3]=c,i=c,v.push(c);;){if(g.index>o)return"";for(s=0,a=Math.pow(2,d),p=1;p!=a;)u=g.val&g.position,g.position>>=1,0==g.position&&(g.position=n,g.val=e(g.index++)),s|=(u>0?1:0)*p,p<<=1;switch(c=s){case 0:for(s=0,a=Math.pow(2,8),p=1;p!=a;)u=g.val&g.position,g.position>>=1,0==g.position&&(g.position=n,g.val=e(g.index++)),s|=(u>0?1:0)*p,p<<=1;l[h++]=r(s),c=h-1,f--;break;case 1:for(s=0,a=Math.pow(2,16),p=1;p!=a;)u=g.val&g.position,g.position>>=1,0==g.position&&(g.position=n,g.val=e(g.index++)),s|=(u>0?1:0)*p,p<<=1;l[h++]=r(s),c=h-1,f--;break;case 2:return v.join("")}if(0==f&&(f=Math.pow(2,d),d++),l[c])m=l[c];else{if(c!==h)return null;m=i+i.charAt(0)}v.push(m),l[h++]=i+m.charAt(0),i=m,0==--f&&(f=Math.pow(2,d),d++)}}};return i}();"function"==typeof define&&define.amd?define(function(){return LZString}):"undefined"!=typeof module&&null!=module?module.exports=LZString:"undefined"!=typeof angular&&null!=angular&&angular.module("LZString",[]).factory("LZString",function(){return LZString});</script>
+<script>/* Laipiņš: kopīgs scenāriju modulis (spēle, prezentācija, admin) */
+const THEMES={
+ koralli:{name:"Koraļļi",hero:"#ff6b4a",hero2:"#ff8f6b",bg:"#fff4ec",chip:"#fff0e6",line:"#f1dfd3",shadow:"#ecd3c6",dark:"#b8402a",soft:"#ffe3d6"},
+ mezs:{name:"Mežs",hero:"#3f7d4e",hero2:"#5f9c6c",bg:"#f2f5ec",chip:"#e5eedc",line:"#d6e2cb",shadow:"#cbd9bf",dark:"#2a5634",soft:"#dce9d1"},
+ jura:{name:"Jūra",hero:"#1f7a99",hero2:"#3e98b6",bg:"#eef6f8",chip:"#e0eff4",line:"#cfe3ea",shadow:"#c2d9e1",dark:"#145a71",soft:"#d4e9f0"},
+ saule:{name:"Saule",hero:"#e07b1f",hero2:"#ef9a45",bg:"#fff7ea",chip:"#fdedd3",line:"#f3dfbf",shadow:"#ead3ad",dark:"#a65610",soft:"#fde3bd"}
+};
+const DEFAULT_CFG={
+ v:1,id:"laipins",title:"Problēmu risināšana komandā",theme:"koralli",
+ roles:["Es palīdzu","Man ir problēma"],
+ levels:["Sapīcis Laipiņš","Mazliet pasmaida","Labā omā","Priecīgs","Laimīgs","Laipnības leģenda"],
+ crit:[
+  ["Uzklausīja mani līdz galam un nepārtrauca","uzklausīt līdz galam un nepārtraukt"],
+  ["Uzdeva jautājumus, lai saprastu problēmu","uzdot vairāk jautājumu"],
+  ["Piedāvāja vismaz 2 dažādus risinājumus","piedāvāt vismaz 2 risinājumus"],
+  ["Paskaidroja, kāpēc risinājums strādās","paskaidrot, kāpēc risinājums strādās"],
+  ["Runāja laipni un ar cieņu","runāt laipni un ar cieņu"]],
+ cards:[["Pārgājienā tavam draugam beidzies ūdens, bet līdz nometnei vēl 2 stundas. Tev ir tikai viena pudele.", "Tev pašam arī slāpst, un tu baidies, ka pietrūks."], ["Tavs komandas biedrs vienmēr kavē, un visa komanda dabū sodu.", "Viņš kavē, jo pirms nodarbībām pieskata mazāko brāli."], ["Sacensībās jūsu komanda zaudēja, un visi vaino tevi.", "Tu tiešām pieļāvi kļūdu, bet neviens tev nepalīdzēja."], ["Nometnē tava telts naktī sāka tecēt, un guļammaiss ir slapjš.", "Tu kautrējies prasīt palīdzību vecākajiem."], ["Draugs grib nokopēt tavu mājasdarbu, un tev ir neērti atteikt.", "Ja atteiksi, baidies, ka viņš ar tevi vairs nedraudzēsies."], ["Tev jāvada komanda, bet neviens neklausa, ko tu saki.", "Tu runā ļoti klusi un nevienam neskaties acīs."], ["Grupas čatā par tevi izplatīta smieklīga bilde.", "Bildi ievietoja tavs labākais draugs."], ["Tu esi jauns komandā un nevienu nepazīsti.", "Tev patīk orientēšanās, bet neviens par to nezina."], ["Mežā jūsu komanda nezina, kurā virzienā iet, un sāk satumst.", "Tev kabatā ir kompass, bet tu neproti to lietot."], ["Divi tavi draugi sastrīdējās, un katrs grib, lai tu nostājies viņa pusē.", "Strīds sākās tāpēc, ka viens nepareizi saprata otra ziņu."], ["Tev ir jāiznes smaga kaste pa šauru taku, un rokas vairs nespēj.", "Blakus stāv divas nūjas un virve, bet tu nezini, kā tās izmantot."], ["Tu nokavēji autobusu uz sacensībām, un telefonā ir 3% akumulatora.", "Tu zini tikai trenera vārdu, ne numuru."], ["Komanda tevi neņem līdzi spēlē, jo tu esot “par lēnu”.", "Tu ļoti labi proti plānot un zīmēt kartes."], ["Tu salauzi drauga lukturīti, un viņš vēl nezina.", "Rīt viņam tas vajadzīgs nakts pārgājienam."], ["Tu baidies uzstāties klases priekšā, bet rīt jāprezentē komandas darbs.", "Pagājušajā reizē visi smējās, kad tu sajauci vārdus."], ["Ugunskura vietā sāk degt sausā zāle, un apkārt ir tikai bērni.", "Tuvumā ir lāpsta un 2 ūdens pudeles."], ["Tavs komandas biedrs nepilda savu daļu darba, un termiņš ir rīt.", "Viņš neko nesaka, jo nesaprot uzdevumu."], ["Sacensībās redzi, ka cita komanda krāpjas.", "Šīs komandas kapteinis ir tavs kaimiņš."], ["Tev jāizvēlas: brīvdienās draugu dzimšanas diena vai Jaunsardzes nometne.", "Abi pasākumi ir vienā datumā, un tu jau esi apsolījis abiem."], ["Tu esi pazaudējis komandas karti 20 minūtes pirms finiša.", "Tu atceries, ka pēdējais punkts bija pie lielā ozola."], ["Mazāks jaunsargs raud, jo ilgojas pēc mājām.", "Viņš vēl nav ne ar vienu sadraudzējies."], ["Komandā ir 2 līderi, un abi dod pretējas pavēles.", "Abiem ir daļēji taisnība."], ["Tev ļoti negribas iet uz treniņu, jo tur vienmēr ir garlaicīgi.", "Tev patiktu, ja būtu vairāk spēļu un kustību."], ["Tu esi apsolījis palīdzēt diviem cilvēkiem vienlaicīgi.", "Abiem palīdzība vajadzīga tieši šodien pēc stundām."]],
+ conv:180,alt:true,
+ pres:{intro:10,join:5,r1:15,pause:10,r2:20,parade:10,end:10,every:5,sw:false}
+};
+const LZ=(typeof LZString!=="undefined")?LZString:null;
+function cleanCfg(c){
+ const d=JSON.parse(JSON.stringify(DEFAULT_CFG));
+ if(!c||typeof c!=="object")return d;
+ const str=(v,max,def)=>typeof v==="string"&&v.trim()?v.trim().slice(0,max):def;
+ const o={v:1};
+ o.id=str(c.id,24,d.id).replace(/[^A-Za-z0-9_-]/g,"")||d.id;
+ o.title=str(c.title,80,d.title);
+ o.theme=THEMES[c.theme]?c.theme:d.theme;
+ o.roles=[0,1].map(i=>str(c.roles&&c.roles[i],24,d.roles[i]));
+ o.levels=[0,1,2,3,4,5].map(i=>str(c.levels&&c.levels[i],28,d.levels[i]));
+ let cr=Array.isArray(c.crit)?c.crit.filter(x=>Array.isArray(x)&&str(x[0],90,"")).slice(0,5).map(x=>[str(x[0],90,""),str(x[1],90,"")]):[];
+ if(!cr.length)cr=d.crit;
+ o.crit=cr.map(x=>[x[0],x[1]||x[0].toLowerCase()]);
+ let cd=Array.isArray(c.cards)?c.cards.filter(x=>Array.isArray(x)&&str(x[0],300,"")).slice(0,80).map(x=>[str(x[0],300,""),str(x[1],300,"")]):[];
+ if(!cd.length)cd=d.cards;
+ o.cards=cd;
+ const n=(v,a,b,def)=>{v=Math.round(+v);return isFinite(v)&&v>=a&&v<=b?v:def};
+ o.conv=n(c.conv,0,900,d.conv);
+ o.alt=typeof c.alt==="boolean"?c.alt:d.alt;
+ const p=c.pres||{},dp=d.pres;
+ o.pres={};for(const k of ["intro","join","r1","pause","r2","parade","end"])o.pres[k]=n(p[k],0,120,dp[k]);
+ o.pres.every=n(p.every,1,30,dp.every);o.pres.sw=typeof p.sw==="boolean"?p.sw:dp.sw;
+ return o;
+}
+function encodeCfg(c){
+ const o=cleanCfg(c),d=cleanCfg(null),m={id:o.id};
+ for(const k of Object.keys(o)){if(k==="v"||k==="id")continue;if(JSON.stringify(o[k])!==JSON.stringify(d[k]))m[k]=o[k]}
+ if(m.pres){const p={};for(const k in m.pres)if(m.pres[k]!==d.pres[k])p[k]=m.pres[k];m.pres=p}
+ if(m.crit)m.crit=m.crit.map(x=>x[1]===x[0].toLowerCase()?[x[0]]:x);
+ return "c="+LZ.compressToEncodedURIComponent(JSON.stringify(m));
+}
+function decodeHash(h){
+ const m=/(?:^#|&)c=([^&]+)/.exec(h||"");if(!m||!LZ)return null;
+ try{return cleanCfg(JSON.parse(LZ.decompressFromEncodedURIComponent(m[1])))}catch(e){return null}
+}
+function isPreview(){return /(?:^#|&)p=1/.test(location.hash)}
+function loadCfg(){
+ const fromHash=decodeHash(location.hash);
+ if(fromHash){if(!isPreview())try{localStorage.setItem("laipins:lastcfg",JSON.stringify(fromHash))}catch(e){}return fromHash}
+ try{const s=JSON.parse(localStorage.getItem("laipins:lastcfg"));if(s)return cleanCfg(s)}catch(e){}
+ return cleanCfg(null);
+}
+function applyThemeVars(c,map){
+ const t=THEMES[c.theme]||THEMES.koralli,r=document.documentElement.style;
+ for(const [k,v] of Object.entries(map))r.setProperty(k,t[v]);
+}
+const hash3=s=>{let h=2166136261;for(const c of s){h^=c.charCodeAt(0);h=Math.imul(h,16777619)>>>0}return h.toString(36).toUpperCase().padStart(3,"0").slice(-3)};
+const resultCode=(id,name,stars,helped,gave,five)=>{const b=`${id}|${name.trim().toLowerCase()}|${stars}|${helped}|${gave}|${five}|laipins-rez`;return hash3(b)+hash3(b+"#")};
 
-let S=null;
-try{S=JSON.parse(localStorage.getItem("laipins"))}catch(e){}
-const save=()=>{try{localStorage.setItem("laipins",JSON.stringify(S))}catch(e){}};
-let tab="game",pi=Math.floor(Math.random()*PROBS.length),secret=false,mask=0,phase="card",code=null;
-
-function pet(level){
- const [c1,c2]=LV[level].col,id="g"+level;
+const PET_COLS=[["#b9c0cf","#8a93a8"],["#a6d8f0","#6fb2d6"],["#8ff0cf","#3ccfa6"],["#ffe07a","#ffb83c"],["#ffb38a","#ff7f50"],["#ffb3d1","#ff5fa2"]];
+const LV_MIN=[0,3,8,15,24,35];
+function petSvg(level,label){
+ const [c1,c2]=PET_COLS[level],id="g"+level+Math.random().toString(36).slice(2,6);
  const eyes=[
   '<path d="M68 104q10 6 20 0M112 104q10 6 20 0" stroke="#2a1838" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M64 88l22 6M136 88l-22 6" stroke="#2a1838" stroke-width="4" stroke-linecap="round"/>',
   '<circle cx="78" cy="102" r="7" fill="#2a1838"/><circle cx="122" cy="102" r="7" fill="#2a1838"/>',
@@ -12638,7 +12659,7 @@ function pet(level){
   +(level===5?'<path d="M70 40l8-26 14 16 8-22 8 22 14-16 8 26z" fill="#ffc93c" stroke="#2a1838" stroke-width="3" stroke-linejoin="round"/><circle cx="100" cy="20" r="4" fill="#ff5fa2"/>':"")
   +(level>=3?'<g fill="#fff" opacity=".9"><path d="M22 60l3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/><path d="M178 70l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></g>':"")
   +(level===0?'<path d="M150 56q6 8 0 12q-6-4 0-12z" fill="#8ec5ff"/>':"");
- return `<svg viewBox="0 0 200 220" aria-label="Laipiņš: ${LV[level].name}"><defs><radialGradient id="${id}" cx="40%" cy="30%" r="75%"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></radialGradient></defs>
+ return `<svg viewBox="0 0 200 220" aria-label="Laipiņš${label?": "+label:""}"><defs><radialGradient id="${id}" cx="40%" cy="30%" r="75%"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></radialGradient></defs>
  <ellipse cx="100" cy="206" rx="58" ry="9" fill="rgba(0,0,0,.18)"/>
  <g class="breathe">${arms}
  <ellipse cx="74" cy="198" rx="18" ry="9" fill="${c2}"/><ellipse cx="126" cy="198" rx="18" ry="9" fill="${c2}"/>
@@ -12646,48 +12667,118 @@ function pet(level){
  <ellipse cx="74" cy="66" rx="20" ry="12" fill="#fff" opacity=".35" transform="rotate(-25 74 66)"/>
  ${eyes}${mouth}${extra}</g></svg>`;
 }
+</script>
+<script>
+{
+const CFG=loadCfg(),PREVIEW=isPreview();
+applyThemeVars(CFG,{"--hero":"hero","--hero2":"hero2","--bg":"bg","--chip":"chip","--line":"line","--dark":"dark"});
+try{document.querySelector('meta[name=theme-color]').content=THEMES[CFG.theme].hero}catch(e){}
+const SALT="laipins-2026|"+CFG.id;
+const KEY=PREVIEW?"laipins:preview":"laipins:"+CFG.id;
+const LOGO="data:image/png;base64,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";
+const CRED=`<a class="cred" href="https://cadet.lv" target="_blank" rel="noopener"><img src="${LOGO}" alt="CADET.LV"><span>© CADET.LV | Jānis Eglis</span></a>`;
+const LV=LV_MIN.map((min,i)=>({min,name:CFG.levels[i]}));
+const CRIT=CFG.crit.map(x=>x[0]),TIPS=CFG.crit.map(x=>x[1]),PROBS=CFG.cards,NC=CRIT.length;
+const [R_SOLVE,R_PROB]=CFG.roles;
+const ESCAPE_MS=180000;
+const BADGES=[
+ {id:"first",t:"Pirmā zvaigzne",d:"Saņem pirmās zvaigznes",ic:"★",ok:s=>s.recv.length>=1},
+ {id:"perfect",t:"Ideāls padoms",d:`Saņem visas ${NC} zvaigznes`,ic:"✦",ok:s=>s.recv.some(r=>pc(r.m)===NC)},
+ {id:"perfect3",t:"Trīskāršs ideāls",d:`3 reizes ${NC} zvaigznes`,ic:"❂",ok:s=>s.recv.filter(r=>pc(r.m)===NC).length>=3},
+ {id:"social",t:"Sabiedriskais",d:"Palīdzi 5 dažādiem cilvēkiem",ic:"☺",ok:s=>s.recv.length>=5},
+ {id:"net",t:"Tīkla veidotājs",d:"Palīdzi 10 cilvēkiem",ic:"✺",ok:s=>s.recv.length>=10},
+ {id:"judge",t:"Godīgais tiesnesis",d:"Novērtē 3 palīdzētājus",ic:"⚖",ok:s=>s.gave>=3},
+ {id:"both",t:"Abās pusēs",d:"3 reizes palīdzi un 3 reizes vērtē",ic:"⇄",ok:s=>s.gave>=3&&s.recv.length>=3},
+ {id:"legend",t:"Leģenda",d:"Sasniedz pēdējo līmeni",ic:"♛",ok:s=>s.stars>=LV[5].min}
+];
+const STAR='<svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>';
+const CAMI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.6"/></svg>';
+const AL="ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+const rnd=n=>Array.from({length:n},()=>AL[Math.floor(Math.random()*AL.length)]).join("");
+const hash=hash3;
+const pc=m=>[0,1,2,3,4].reduce((a,i)=>a+((m>>i)&1),0);
+const esc=v=>String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const $=s=>document.querySelector(s);
+const lvOf=st=>{let i=0;LV.forEach((l,k)=>{if(st>=l.min)i=k});return i};
+const pet=l=>petSvg(l,LV[l].name);
+const fmt=s=>`${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}`;
+const vib=p=>{try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}};
 
+let S=null;
+try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+if(!S&&CFG.id==="laipins"&&!PREVIEW)try{const o=JSON.parse(localStorage.getItem("laipins"));if(o&&o.name){S=Object.assign(o,{cam:true,lock:false,talk:null});localStorage.setItem(KEY,JSON.stringify(S))}}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const newPi=()=>{let n;do{n=Math.floor(Math.random()*PROBS.length)}while(PROBS.length>1&&n===S.pi);return n};
+if(S){if(!(S.pi>=0&&S.pi<PROBS.length))S.pi=0;S.used=S.used||{}}
+let tab="game",secret=false,mask=0,phase=S&&S.talk?"talk":"card",code=null,camState="ask",toast="";
+
+/* ---------- lomu pamīšus ---------- */
+const locked=()=>CFG.alt&&S.role==="prob"&&S.lock;
+const escapeIn=()=>Math.max(0,ESCAPE_MS-(Date.now()-(S.since||0)));
+const canSolve=()=>!locked()||(escapeIn()===0&&!S.talk&&phase==="card");
+let escT=0;
+function setRole(r){
+ if(r===S.role)return;
+ if(r==="solve"&&!canSolve())return;
+ S.role=r;if(r==="prob"&&CFG.alt){S.lock=true;S.since=Date.now()}
+ phase=S.talk?"talk":"card";save();render();
+}
+function holderDone(){
+ phase="card";code=null;secret=false;S.talk=null;S.pi=newPi();
+ if(CFG.alt){S.lock=false;S.role="solve";toast="Tagad tava kārta palīdzēt!"}
+ save();render();scrollTo(0,0);
+}
+
+/* ---------- render ---------- */
 function ring(stars){
  const max=LV[5].min,f=Math.min(stars/max,1),r=46,C=2*Math.PI*r;
  const ticks=LV.slice(1,5).map(l=>{const a=l.min/max*2*Math.PI-Math.PI/2;return `<circle cx="${50+r*Math.cos(a)}" cy="${50+r*Math.sin(a)}" r="1.6" fill="#fff" opacity=".8"/>`}).join("");
  return `<svg viewBox="0 0 100 100"><circle class="ring-bg" cx="50" cy="50" r="${r}" fill="none" stroke-width="5"/>
  <circle id="ringc" class="ring" cx="50" cy="50" r="${r}" fill="none" stroke-width="5" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-f)}" transform="rotate(-90 50 50)"/>${ticks}</svg>`;
 }
-
 function render(){
+ clearTimeout(escT);stopTalkTick();
  if(!S){
-  $("#root").innerHTML=`<div class="start"><div class="demo"><div class="glow" id="glow"></div><div class="dpet" id="dpet">${pet(0)}</div><p class="dname" id="dname">${LV[0].name}</p></div>
-  <h1>Laipiņš</h1><p style="font-size:18px;margin:0">Šis ir Laipiņš. Sākumā viņš ir bēdīgs, bet tu vari to mainīt! Palīdzi citiem atrisināt viņu problēmas, un katra saņemtā zvaigzne padarīs viņu priecīgāku.</p>
+  $("#root").innerHTML=`<div class="start"><div class="demo"><div class="glow" id="glow"></div><div class="dpet" id="dpet">${pet(0)}</div><p class="dname" id="dname">${esc(LV[0].name)}</p></div>
+  <h1>Laipiņš</h1><p class="topic">${esc(CFG.title)}</p><p style="font-size:18px;margin:0">Šis ir Laipiņš. Sākumā viņš ir bēdīgs, bet tu vari to mainīt! Palīdzi citiem atrisināt viņu problēmas, un katra saņemtā zvaigzne padarīs viņu priecīgāku.</p>
   <input id="nm" maxlength="20" placeholder="Tavs vārds" autocomplete="off">
   <button class="btn" id="go">Sākt spēli</button>${CRED}</div>`;
   startDemo();
-  $("#go").onclick=()=>{const n=$("#nm").value.trim();if(!n){$("#nm").focus();return}stopDemo();
-   S={id:rnd(4),name:n,stars:0,recv:[],gave:0,used:{},role:"solve",badges:[]};save();render()};
+  const go=()=>{const n=$("#nm").value.trim();if(!n){$("#nm").focus();return}stopDemo();
+   S={id:rnd(4),name:n,stars:0,recv:[],gave:0,used:{},role:"solve",lock:false,since:0,cam:false,camSkip:PREVIEW,talk:null,pi:0};S.pi=newPi();save();render()};
+  $("#go").onclick=go;$("#nm").onkeydown=e=>{if(e.key==="Enter")go()};
   return;
  }
+ if(!S.cam&&!S.camSkip){$("#root").innerHTML=camPane();bindCam();return}
  if(tab==="game"&&S.role==="prob"&&phase==="qr"){
   $("#root").innerHTML=`<div class="qrfull"><p class="kick">Ļauj palīdzētājam noskenēt</p><h2>${pc(mask)} ★ zvaigznes gatavas!</h2>
-  <div class="qr">${qrSvg(code.payload)}</div><div class="code">${code.short}</div><p class="small">Ja kamera nestrādā, palīdzētājs var ievadīt šo kodu ar roku</p>
-  <div class="gap"></div><button class="btn alt" id="done">Gatavs, nākamā problēma</button></div>`;bind();return;
+  <div class="qr">${qrSvg(code.payload,"M")}</div><div class="code">${code.short}</div><p class="small">Ja kamera nestrādā, palīdzētājs var ievadīt šo kodu ar roku</p>
+  <div class="gap"></div><button class="btn alt" id="done">${CFG.alt?"Gatavs, tagad es palīdzu":"Gatavs, nākamā problēma"}</button></div>`;bind();return;
  }
+ if(tab==="game"&&S.role==="prob"&&(phase==="talk"||phase==="timeout")){$("#root").innerHTML=talkPane();bind();if(phase==="talk")startTalkTick();return}
  const L=lvOf(S.stars),nx=LV[L+1];
  let body="";
  if(tab==="game")body=S.role==="solve"?solvePane():probPane();
  if(tab==="badges")body=badgePane();
  if(tab==="me")body=mePane();
+ const lk=locked(),cs=canSolve();
  $("#root").innerHTML=`<div class="app">
  <section class="hero"><div class="top"><span class="who">${esc(S.name)}</span><span class="pill" id="pill">${STAR}<span id="cnt">${S.stars}</span></span></div>
  <div class="stage">${ring(S.stars)}<div class="pet" id="pet">${pet(L)}</div></div>
- <div class="mood"><p class="lvl">${LV[L].name}</p><p class="next">${nx?`Līdz nākamajam līmenim vēl ${nx.min-S.stars} ★`:"Laipiņš ir laimīgākais pasaulē!"}</p></div></section>
- ${tab==="game"?`<div class="seg"><button data-r="solve" aria-pressed="${S.role==="solve"}">Es palīdzu</button><button data-r="prob" aria-pressed="${S.role==="prob"}">Man ir problēma</button></div>`:""}
+ <div class="mood"><p class="lvl">${esc(LV[L].name)}</p><p class="next">${nx?`Līdz nākamajam līmenim vēl ${nx.min-S.stars} ★`:"Laipiņš ir laimīgākais pasaulē!"}</p></div></section>
+ ${tab==="game"?`<div class="seg"><button data-r="solve" aria-pressed="${S.role==="solve"}" ${lk&&!cs?'aria-disabled="true" class="lockd"':""}>${lk&&!cs?'<span class="lk">🔒</span>':""}${esc(R_SOLVE)}</button><button data-r="prob" aria-pressed="${S.role==="prob"}">${esc(R_PROB)}</button></div>
+ ${lk?`<p class="locknote">${cs?"Neviens nenāk? Tagad vari pārslēgties uz palīdzēšanu.":`Lomas mainās pamīšus: novērtē vienu palīdzētāju, un tad atkal varēsi palīdzēt.`}</p>`:""}
+ ${toast?`<p class="toast">${esc(toast)}</p>`:""}`:""}
  <div class="pane" ${tab!=="game"?'style="padding-top:22px"':""}>${body}</div></div>
  <nav class="bar">
   <button data-t="game" aria-current="${tab==="game"}"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.3 6.8 19l1-5.8-4.3-4.1 5.9-.8z"/></svg>Spēle</button>
   <button data-t="badges" aria-current="${tab==="badges"}"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 22l5-3 5 3-1.5-8"/></svg>Sasniegumi</button>
   <button data-t="me" aria-current="${tab==="me"}"><svg viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>Rezultāts</button>
  </nav>`;
+ toast="";
  document.querySelectorAll("[data-t]").forEach(b=>b.onclick=()=>{tab=b.dataset.t;render();scrollTo(0,0)});
- document.querySelectorAll("[data-r]").forEach(b=>b.onclick=()=>{S.role=b.dataset.r;save();phase="card";render()});
+ document.querySelectorAll("[data-r]").forEach(b=>b.onclick=()=>setRole(b.dataset.r));
+ if(lk&&!cs&&!S.talk){const w=escapeIn();if(w>0)escT=setTimeout(render,w+200)}
  bind();
 }
 
@@ -12699,74 +12790,146 @@ function startDemo(){
  const step=()=>{const el=$("#dpet");if(!el){stopDemo();return}
   k=(k+1)%seq.length;const L=seq[k];
   if(el.dataset.l!=String(L)){el.dataset.l=L;el.innerHTML=pet(L);$("#dname").textContent=LV[L].name;
-   $("#glow").style.background=`radial-gradient(circle,${LV[L].col[0]}aa 0%,transparent 65%)`;
+   $("#glow").style.background=`radial-gradient(circle,${PET_COLS[L][0]}aa 0%,transparent 65%)`;
    el.classList.remove("pop");el.getBoundingClientRect();el.classList.add("pop")}};
  demoT=setInterval(step,900);
 }
 function stopDemo(){clearInterval(demoT);demoT=0}
 
+/* ---------- kamera ---------- */
+const UA=navigator.userAgent;
+const OS={ios:/iP(hone|ad|od)/.test(UA)||(/Macintosh/.test(UA)&&navigator.maxTouchPoints>1),android:/Android/.test(UA),
+ inapp:/FBAN|FBAV|Instagram|Messenger|Line\/|Snapchat|TikTok|; wv\)/i.test(UA),crios:/CriOS|FxiOS|EdgiOS/.test(UA),samsung:/SamsungBrowser/.test(UA)};
+function bar(icon,label){return `<svg class="mock" viewBox="0 0 320 70"><rect x="6" y="12" width="308" height="46" rx="23" fill="#eceff3"/>
+ <circle cx="40" cy="35" r="20" fill="var(--sun)"/><text x="40" y="41" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="16" fill="#2a1838">${icon}</text>
+ <text x="72" y="41" font-family="Nunito" font-size="16" fill="#555">cadet-tools.github.io</text>
+ <path d="M40 66l-8-8h16z" fill="var(--sun)"/><text x="300" y="41" text-anchor="end" font-family="Nunito" font-weight="800" font-size="13" fill="#2a1838">${label}</text></svg>`}
+function helpSteps(){
+ if(OS.inapp)return {mock:"",steps:["Tu atvēri spēli citas lietotnes iekšējā pārlūkā, un tur kamera nedarbojas.","Nospied ⋯ vai ⋮ izvēlni augšā.","Izvēlies “Atvērt pārlūkā” (Safari vai Chrome).","Tur ievadi vārdu vēlreiz un atļauj kameru."]};
+ if(OS.ios&&OS.crios)return {mock:"",steps:["Atver telefona “Iestatījumi” (Settings).","Ritini uz leju un atrodi “Chrome”.","Ieslēdz slēdzi “Kamera” (Camera).","Atgriezies šeit un nospied “Mēģināt vēlreiz”."]};
+ if(OS.ios)return {mock:bar("aA","nospied šeit"),steps:["Adreses joslā nospied “aA” (vai ikonu kreisajā pusē).","Izvēlies “Vietnes iestatījumi” (Website Settings).","Pie “Kamera” izvēlies “Atļaut” (Allow).","Nospied “Mēģināt vēlreiz”. Ja nesanāk: Iestatījumi → Safari → Kamera → Atļaut."]};
+ if(OS.samsung)return {mock:bar("🔒","nospied šeit"),steps:["Nospied slēdzenes ikonu pa kreisi no adreses.","Izvēlies “Atļaujas” vai “Vietnes atļaujas”.","Pie “Kamera” izvēlies “Atļaut”.","Nospied “Mēģināt vēlreiz”."]};
+ if(OS.android)return {mock:bar("⚙","nospied šeit"),steps:["Nospied ikonu pa kreisi no adreses (slēdzene vai slīdņi).","Izvēlies “Atļaujas” (Permissions).","Pie “Kamera” izvēlies “Atļaut” (Allow).","Nospied “Mēģināt vēlreiz”. Ja kameras tur nav: Iestatījumi → Lietotnes → Chrome → Atļaujas → Kamera → Atļaut."]};
+ return {mock:bar("🔒","nospied šeit"),steps:["Nospied ikonu pa kreisi no adreses joslas.","Atrodi “Kamera” un izvēlies “Atļaut”.","Pārlādē lapu un nospied “Mēģināt vēlreiz”."]};
+}
+function helpHtml(){const h=helpSteps();return `<div class="help">${h.mock}<ol>${h.steps.map(s=>`<li>${esc(s)}</li>`).join("")}</ol></div>`}
+function camPane(){
+ const bad=camState!=="ask";
+ return `<div class="start camstep"><div class="camhero"><div class="dpet" style="width:150px;height:165px">${pet(bad?0:2)}</div><div class="camic">${CAMI}</div></div>
+ <p class="kick">Pēdējais solis pirms spēles</p><h2>${bad?"Kamera ir bloķēta":"Atļauj kameru"}</h2>
+ <p style="font-size:17px;margin:6px 0 14px">${camState==="ask"?"Ar kameru tu skenēsi zvaigžņu kodus. Kad nospiedīsi pogu, telefons jautās atļauju. Izvēlies <b>“Atļaut”</b>.":camState==="nodev"?"Šajā ierīcē kameru neizdevās atrast. Zvaigžņu kodus varēsi ievadīt ar roku.":camState==="insecure"?"Šis pārlūks neļauj izmantot kameru. Atver spēli Safari vai Chrome pārlūkā.":"Telefons kameru neatļāva. Izdari šos soļus:"}</p>
+ ${camState==="denied"||camState==="insecure"?helpHtml():""}
+ <button class="btn" id="camok">${CAMI}${bad?"Mēģināt vēlreiz":"Atļaut kameru"}</button>
+ ${bad?`<button class="danger" id="camskip" style="margin-top:14px;color:var(--mut)">Turpināt bez kameras (kodus ievadīšu ar roku)</button>`:""}</div>`;
+}
+async function askCam(){
+ if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){camState="insecure";render();return}
+ try{const st=await navigator.mediaDevices.getUserMedia({video:{facingMode:"environment"},audio:false});st.getTracks().forEach(t=>t.stop());
+  S.cam=true;save();toast="Kamera atļauta. Lai veicas!";render()}
+ catch(e){camState=(e&&(e.name==="NotFoundError"||e.name==="OverconstrainedError"))?"nodev":"denied";render()}
+}
+function bindCam(){$("#camok").onclick=askCam;const k=$("#camskip");if(k)k.onclick=()=>{S.camSkip=true;save();render()}}
+try{navigator.permissions&&navigator.permissions.query({name:"camera"}).then(p=>{if(p.state==="granted"&&S&&!S.cam){S.cam=true;save();render()}}).catch(()=>{})}catch(e){}
+
+/* ---------- paneļi ---------- */
 function solvePane(){
  const last=S.recv.slice(-4).reverse();
  return `<div class="card"><p class="kick">Tava misija</p><h2>Atrodi kādu ar problēmu un palīdzi</h2>
- <ol class="steps"><li><b>1</b>Pieej kādam, kam ir izvēlēts “Man ir problēma”</li><li><b>2</b>Uzklausi un uzdod jautājumus</li><li><b>3</b>Piedāvā vismaz 2 risinājumus un paskaidro</li><li><b>4</b>Noskenē viņa kodu un saņem zvaigznes</li></ol></div>
+ <ol class="steps"><li><b>1</b>Pieej kādam, kam ir izvēlēts “${esc(R_PROB)}”</li><li><b>2</b>Uzklausi un uzdod jautājumus</li><li><b>3</b>Piedāvā risinājumus un paskaidro</li><li><b>4</b>Noskenē viņa kodu un saņem zvaigznes</li></ol>
+ ${CFG.conv?`<p class="small" style="text-align:left;margin-top:12px">Sarunai ir ${fmt(CFG.conv)} min. Nepaspēsiet, un zvaigžņu nebūs.</p>`:""}
+ ${CFG.alt?`<p class="small" style="text-align:left;margin-top:6px">Pēc zvaigžņu saņemšanas tev pašam būs problēma.</p>`:""}</div>
  <button class="btn" id="scan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 8V5a1 1 0 011-1h3M16 4h3a1 1 0 011 1v3M20 16v3a1 1 0 01-1 1h-3M8 20H5a1 1 0 01-1-1v-3M7 12h10"/></svg>Skenēt zvaigznes</button>
  <div class="gap"></div>
- ${last.length?`<div class="card"><p class="kick">Pēdējās zvaigznes</p><ul class="recv">${last.map(r=>`<li><span>${esc(r.n)}</span><i>${"★".repeat(pc(r.m))}${"☆".repeat(5-pc(r.m))}</i></li>`).join("")}</ul></div>`:""}`;
+ ${last.length?`<div class="card"><p class="kick">Pēdējās zvaigznes</p><ul class="recv">${last.map(r=>`<li><span>${esc(r.n)}</span><i>${"★".repeat(pc(r.m))}${"☆".repeat(Math.max(0,NC-pc(r.m)))}</i></li>`).join("")}</ul></div>`:""}`;
 }
-
+function probCard(){const p=PROBS[S.pi];
+ return `<div class="card"><p class="kick">Tava problēma · izstāsti to saviem vārdiem</p><p class="prob">${esc(p[0])}</p>
+ ${p[1]?`<button class="secret" id="sec"><span>Slēptā detaļa · stāsti tikai tad, ja pajautā</span>${secret?esc(p[1]):"Pieskaries, lai redzētu"}</button>`:""}</div>`}
 function probPane(){
- if(phase==="card"){const p=PROBS[pi];
-  return `<div class="card"><p class="kick">Tava problēma · izstāsti to saviem vārdiem</p><p class="prob">${esc(p[0])}</p>
-  <button class="secret" id="sec"><span>Slēptā detaļa · stāsti tikai tad, ja pajautā</span>${secret?esc(p[1]):"Pieskaries, lai redzētu"}</button></div>
-  <button class="btn" id="rate">Novērtēt palīdzētāju</button><div class="gap"></div>
-  <button class="btn soft" id="newp">Cita problēma</button>`;}
+ if(phase==="card")return probCard()+(CFG.conv?`<button class="btn" id="talk">Sākt sarunu · ${fmt(CFG.conv)}</button><p class="small">Sāc, kad palīdzētājs ir blakus</p>`:`<button class="btn" id="rate">Novērtēt palīdzētāju</button>`)
+  +`<div class="gap"></div><button class="btn soft" id="newp">Cita problēma</button>`;
  if(phase==="rate"){const n=pc(mask);
   return `<div class="card"><p class="kick">Atzīmē godīgi, ko palīdzētājs izdarīja</p><h2>Ko viņš izdarīja?</h2>
-  <div class="crit">${CRIT.map((c,i)=>`<button data-c="${i}" aria-pressed="${!!(mask>>i&1)}"><span class="st">${STAR}</span>${c}</button>`).join("")}</div>
+  <div class="crit">${CRIT.map((c,i)=>`<button data-c="${i}" aria-pressed="${!!(mask>>i&1)}"><span class="st">${STAR}</span>${esc(c)}</button>`).join("")}</div>
   <div class="starsline">${CRIT.map((_,i)=>STAR.replace("<svg",`<svg class="${i<n?"on":""}"`)).join("")}</div>
-  <button class="btn" id="mk">Izveidot kodu · ${n} ★</button><div class="gap"></div><button class="btn soft" id="back">Atpakaļ</button></div>`;}
- if(phase==="qr")return `<div class="card" style="text-align:center"><p class="kick">Ļauj palīdzētājam noskenēt</p><h2>${"★".repeat(pc(mask))} dāvana gatava!</h2>
-  <div class="qr">${qrSvg(code.payload)}</div><div class="code">${code.short}</div><p class="small">Ja kamera nestrādā, palīdzētājs var ievadīt šo kodu ar roku</p></div>
-  <button class="btn alt" id="done">Gatavs, nākamā problēma</button>`;
+  <button class="btn" id="mk">Izveidot kodu · ${n} ★</button>${CFG.conv?"":`<div class="gap"></div><button class="btn soft" id="back">Atpakaļ</button>`}</div>`;}
+ return "";
 }
-
+function talkPane(){
+ if(phase==="timeout")return `<div class="qrfull"><div class="dpet" style="width:170px;height:187px;margin:0 auto">${pet(0)}</div>
+  <h2>Laiks beidzās!</h2><p style="font-size:18px;margin:6px 0 18px">Šoreiz zvaigžņu nav. Nākamreiz runājiet īsāk un pie lietas.</p>
+  <button class="btn alt" id="tdone">${CFG.alt?"Labi, tagad es palīdzu":"Nākamā problēma"}</button></div>`;
+ const r=88,C=2*Math.PI*r;
+ return `<div class="qrfull talk"><p class="kick">Saruna notiek</p>
+ <div class="tring"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="${r}" class="tbg"/><circle id="tfg" cx="100" cy="100" r="${r}" class="tfg" stroke-dasharray="${C}" stroke-dashoffset="0"/></svg><div class="tdig" id="tdig">${fmt(CFG.conv)}</div></div>
+ <div style="text-align:left">${probCard()}</div>
+ <button class="btn" id="end">Saruna pabeigta, novērtēt</button></div>`;
+}
+let talkI=0,warned=false;
+function stopTalkTick(){clearInterval(talkI);talkI=0}
+function startTalkTick(){
+ warned=false;const C=2*Math.PI*88;
+ const t=()=>{if(!S.talk){stopTalkTick();return}
+  const left=Math.max(0,CFG.conv-Math.floor((Date.now()-S.talk.start)/1000));
+  const d=$("#tdig"),f=$("#tfg");if(d)d.textContent=fmt(left);if(f)f.setAttribute("stroke-dashoffset",C*(1-left/CFG.conv));
+  if(left<=30&&!warned){warned=true;vib([80,60,80]);const w=$(".talk");if(w)w.classList.add("warn")}
+  if(left<=0){stopTalkTick();S.talk=null;save();vib([200,100,200]);phase="timeout";render()}};
+ t();talkI=setInterval(t,250);
+}
 function badgePane(){
  return `<div class="badges">${BADGES.map(b=>{const got=b.ok(S);return `<div class="badge ${got?"got":""}"><div class="ic" style="font-size:32px;color:#e0a100">${b.ic}</div><h3>${b.t}</h3><p>${got?"Iegūts!":b.d}</p></div>`}).join("")}</div>`;
 }
-
-function mePane(){
- const five=S.recv.filter(r=>pc(r.m)===5).length,got=BADGES.filter(b=>b.ok(S)).length;
- const tally=CRIT.map((c,i)=>({c,n:S.recv.filter(r=>r.m>>i&1).length}));
+function stats(){
+ const five=S.recv.filter(r=>pc(r.m)===NC).length;
+ const tally=CRIT.map((c,i)=>({c,i,n:S.recv.filter(r=>r.m>>i&1).length}));
  const best=S.recv.length?tally.reduce((a,b)=>b.n>a.n?b:a):null,weak=S.recv.length?tally.reduce((a,b)=>b.n<a.n?b:a):null;
- return `<div class="card"><p class="kick">Parādi šo ekrānu instruktoram</p><h2>${esc(S.name)}</h2>
+ return {five,best,weak};
+}
+function resultText(){
+ const {five,best}=stats(),c=resultCode(CFG.id,S.name,S.stars,S.recv.length,S.gave,five);
+ return `Laipiņš · ${CFG.title}\nVārds: ${S.name}\nZvaigznes: ${S.stars}\nPalīdzēja: ${S.recv.length}\nNovērtēja: ${S.gave}\nIdeāli padomi: ${five}\n${best?`Stiprā puse: ${best.c}\n`:""}Kods: ${c} · ${CFG.id}`;
+}
+function mePane(){
+ const {five,best,weak}=stats(),got=BADGES.filter(b=>b.ok(S)).length;
+ const share=!!navigator.share,link=location.href.replace(/&p=1/,"");
+ return `<div class="card"><p class="kick">Tavs rezultāts</p><h2>${esc(S.name)}</h2>
  <div class="stats"><div><div class="num">${S.stars}</div><span>zvaigznes</span></div><div><div class="num">${S.recv.length}</div><span>palīdzēji</span></div><div><div class="num">${S.gave}</div><span>novērtēji</span></div></div>
  <p class="small" style="margin-top:12px">${five}× ideāls padoms · ${got}/${BADGES.length} sasniegumi</p></div>
- ${best?`<div class="card"><p class="kick">Tava stiprā puse</p><p class="prob" style="margin:0 0 10px">${best.c}</p><p class="kick">Nākamreiz pamēģini vairāk</p><p class="prob" style="margin:0">${TIPS[tally.indexOf(weak)]}</p></div>`:""}
- <div class="card" style="text-align:center"><p class="kick">Pievieno draugu spēlei</p><div class="qr" style="width:200px">${qrSvg(location.href.split("#")[0])}</div></div>
+ <div class="card"><p class="kick">Sūtīt rezultātu instruktoram</p><p style="margin:0 0 12px;font-weight:700">Izvēlies, kur sūtīt: WhatsApp, Signal, Telegram vai citur.</p>
+ ${share?`<button class="btn" id="shr">Kopīgot rezultātu</button><div class="gap"></div>`:""}
+ <a class="btn ${share?"soft":""}" id="wa" href="https://wa.me/?text=${encodeURIComponent(resultText())}" target="_blank" rel="noopener">Sūtīt ar WhatsApp</a><div class="gap"></div>
+ <button class="btn soft" id="cpy">Kopēt tekstu</button><p class="small" id="cpymsg"></p></div>
+ ${best?`<div class="card"><p class="kick">Tava stiprā puse</p><p class="prob" style="margin:0 0 10px">${esc(best.c)}</p><p class="kick">Nākamreiz pamēģini vairāk</p><p class="prob" style="margin:0">${esc(TIPS[weak.i])}</p></div>`:""}
+ <div class="card" style="text-align:center"><p class="kick">Pievieno draugu spēlei</p><div class="qr" style="width:220px">${qrSvg(link,"L")}</div></div>
  <button class="danger" id="reset">Sākt no jauna</button>${CRED}`;
 }
-
-function qrSvg(t){const q=qrcode(0,"M");q.addData(t);q.make();return q.createSvgTag({cellSize:6,margin:2,scalable:true})}
+function qrSvg(t,lv){const q=qrcode(0,lv||"M");q.addData(t);q.make();return q.createSvgTag({cellSize:6,margin:2,scalable:true})}
 
 function bind(){
  const on=(s,f)=>{const e=$(s);if(e)e.onclick=f};
  on("#scan",openScan);
- on("#sec",()=>{secret=!secret;render()});
- on("#newp",()=>{pi=(pi+1+Math.floor(Math.random()*(PROBS.length-1)))%PROBS.length;secret=false;render()});
+ on("#sec",()=>{secret=!secret;const y=scrollY;render();scrollTo(0,y)});
+ on("#newp",()=>{S.pi=newPi();secret=false;save();render()});
  on("#rate",()=>{phase="rate";mask=0;render()});
+ on("#talk",()=>{S.talk={start:Date.now()};save();phase="talk";render();scrollTo(0,0)});
+ on("#end",()=>{S.talk=null;save();phase="rate";mask=0;render();scrollTo(0,0)});
+ on("#tdone",holderDone);
  on("#back",()=>{phase="card";render()});
  document.querySelectorAll("[data-c]").forEach(b=>b.onclick=()=>{mask^=1<<+b.dataset.c;const y=scrollY;render();scrollTo(0,y)});
  on("#mk",()=>{const short=`${S.id}-${mask.toString(36).toUpperCase()}-${rnd(4)}`;const sc=`${short}-${hash(short+SALT)}`;
   code={short:sc,payload:`LAIP:${sc}:${encodeURIComponent(S.name)}`};S.gave++;save();phase="qr";render();scrollTo(0,0)});
- on("#done",()=>{phase="card";code=null;secret=false;pi=(pi+1+Math.floor(Math.random()*(PROBS.length-1)))%PROBS.length;render()});
- on("#reset",()=>{const b=$("#reset");if(b.dataset.sure){try{localStorage.removeItem("laipins")}catch(e){}S=null;tab="game";render()}else{b.dataset.sure=1;b.textContent="Tiešām dzēst visas zvaigznes? Pieskaries vēlreiz"}});
+ on("#done",holderDone);
+ on("#shr",async()=>{try{await navigator.share({title:"Laipiņš rezultāts",text:resultText()})}catch(e){}});
+ on("#cpy",async()=>{const m=$("#cpymsg");try{await navigator.clipboard.writeText(resultText());m.textContent="Nokopēts! Ielīmē to ziņā instruktoram."}catch(e){m.textContent="Neizdevās nokopēt. Izmanto WhatsApp pogu."}});
+ on("#reset",()=>{const b=$("#reset");if(b.dataset.sure){try{localStorage.removeItem(KEY)}catch(e){}S=null;tab="game";phase="card";render()}else{b.dataset.sure=1;b.textContent="Tiešām dzēst visas zvaigznes? Pieskaries vēlreiz"}});
 }
 
-/* --- skenēšana --- */
+/* ---------- skenēšana ---------- */
 let stream=null,raf=0;
 function openScan(){
  const ov=document.createElement("div");ov.className="ov";ov.id="ov";
  ov.innerHTML=`<div class="cam"><video id="vid" playsinline muted></video></div><p class="msg" id="msg">Notēmē kameru uz QR kodu</p>
+ <div id="camhelp"></div>
  <input id="man" placeholder="vai ievadi kodu" autocomplete="off" autocapitalize="characters"><button class="btn" id="mok">Pievienot</button><button class="btn soft" id="cls">Aizvērt</button>`;
  document.body.appendChild(ov);
  $("#cls").onclick=closeScan;
@@ -12775,8 +12938,10 @@ function openScan(){
 }
 async function startCam(){
  const v=$("#vid"),cv=document.createElement("canvas"),cx=cv.getContext("2d",{willReadFrequently:true});
- try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:"environment"},audio:false});v.srcObject=stream;await v.play()}
- catch(e){$("#msg").textContent="Kamera nav pieejama, ievadi kodu ar roku.";return}
+ try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:"environment"},audio:false});v.srcObject=stream;await v.play();if(!S.cam){S.cam=true;save()}}
+ catch(e){const cb=$(".cam");if(cb)cb.style.display="none";$("#msg").textContent="Kamera nav atļauta. Ievadi kodu ar roku vai atļauj kameru:";
+  $("#camhelp").innerHTML=`<button class="btn soft" id="hbtn" style="margin-top:6px">Kā atļaut kameru?</button>`;
+  $("#hbtn").onclick=()=>{$("#camhelp").innerHTML=`<div class="help dark">${helpHtml()}</div>`};return}
  const loop=()=>{if(!stream)return;
   if(v.readyState>=2&&v.videoWidth){const sc=Math.min(1,640/v.videoWidth);cv.width=v.videoWidth*sc|0;cv.height=v.videoHeight*sc|0;
    cx.drawImage(v,0,0,cv.width,cv.height);const d=cx.getImageData(0,0,cv.width,cv.height);
@@ -12792,19 +12957,20 @@ function take(txt){
  const parts=s.toUpperCase().replace(/\s/g,"").split("-");
  if(parts.length!==4){msg("Šis nav Laipiņa kods");return false}
  const [did,m36,non,chk]=parts,short=`${did}-${m36}-${non}`;
- if(hash(short+SALT)!==chk){msg("Kods nav derīgs, pārbaudi burtus");return false}
+ if(hash(short+SALT)!==chk){msg("Kods nav derīgs. Vai abiem ir atvērta tā pati spēle?");return false}
  if(did===S.id){msg("Savu kodu skenēt nedrīkst 😉");return false}
  if(S.used[short]){msg("Šis kods jau ir izmantots");return false}
  if(S.recv.some(r=>r.g===did)){msg("Šis cilvēks tev jau deva zvaigznes. Atrodi kādu citu!");return false}
  const m=parseInt(m36,36);if(!(m>=0&&m<32)){msg("Kods nav derīgs");return false}
  const before=lvOf(S.stars),oldB=BADGES.filter(b=>b.ok(S)).map(b=>b.id);
- S.used[short]=1;S.recv.push({g:did,n:name||("Dalībnieks "+did),m,t:Date.now()});S.stars+=pc(m);save();
- closeScan();reward(pc(m),m,name,before,oldB);return true;
+ S.used[short]=1;S.recv.push({g:did,n:name||("Dalībnieks "+did),m,t:Date.now()});S.stars+=pc(m);
+ if(CFG.alt){S.role="prob";S.lock=true;S.since=Date.now();phase="card";secret=false;S.pi=newPi()}
+ save();closeScan();reward(pc(m),m,name,before,oldB);return true;
 }
 function reward(n,m,name,before,oldB){
  const after=lvOf(S.stars),newB=BADGES.filter(b=>b.ok(S)&&!oldB.includes(b.id));
  tab="game";render();scrollTo(0,0);
- if(navigator.vibrate)try{navigator.vibrate([60,40,120])}catch(e){}
+ vib([60,40,120]);
  const ringc=$("#ringc");if(ringc){const C=+ringc.getAttribute("stroke-dasharray");const prev=Math.min((S.stars-n)/LV[5].min,1);const cur=ringc.getAttribute("stroke-dashoffset");ringc.style.transition="none";ringc.setAttribute("stroke-dashoffset",C*(1-prev));ringc.getBoundingClientRect();ringc.style.transition="";ringc.setAttribute("stroke-dashoffset",cur)}
  const cnt=$("#cnt");let k=S.stars-n;cnt.textContent=k;
  const pill=$("#pill").getBoundingClientRect();
@@ -12814,13 +12980,15 @@ function reward(n,m,name,before,oldB){
  setTimeout(()=>{cnt.textContent=S.stars;const p=$("#pet");if(p){p.classList.remove("hop");p.getBoundingClientRect();p.classList.add("hop")}},900+n*3*70);
  const missing=TIPS.filter((_,i)=>!(m>>i&1));
  setTimeout(()=>{const ov=document.createElement("div");ov.className="ov win";
-  ov.innerHTML=`${after>before?`<div class="pet">${pet(after)}</div><h2>Jauns līmenis!</h2><p style="font-size:20px;font-weight:800">${LV[after].name}</p>`:`<h2>+${n} ★</h2>`}
+  ov.innerHTML=`${after>before?`<div class="pet">${pet(after)}</div><h2>Jauns līmenis!</h2><p style="font-size:20px;font-weight:800">${esc(LV[after].name)}</p>`:`<h2>+${n} ★</h2>`}
   <p>No: <b>${esc(name||"draugs")}</b></p>${missing.length?`<p style="opacity:.85">Nākamreiz pamēģini: ${esc(missing[0])}</p>`:`<p>Ideāls padoms!</p>`}
-  ${newB.map(b=>`<p style="font-weight:800;color:var(--sun)">Jauns sasniegums: ${b.t}</p>`).join("")}<button class="btn" id="ok">Super!</button>`;
+  ${newB.map(b=>`<p style="font-weight:800;color:var(--sun)">Jauns sasniegums: ${b.t}</p>`).join("")}
+  ${CFG.alt?`<p style="font-weight:800;margin-top:10px">Tagad tava kārta: tev ir problēma!</p>`:""}<button class="btn" id="ok">Super!</button>`;
   document.body.appendChild(ov);$("#ok").onclick=()=>ov.remove()},after>before?1700:1500);
 }
 render();
 }
+
 </script>
 </body>
 </html>
